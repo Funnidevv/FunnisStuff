@@ -3,329 +3,190 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Settings - PC Sandbox</title>
-  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;800&display=swap" rel="stylesheet" />
+  <title>PC Sandbox Settings</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --bg-dark: #0f0f12;
-      --text-dark: #f0f0f0;
-      --card-bg-dark: #1a1a1f;
-      --accent-dark: #7c3aed;
-
-      --bg-light: #f9fafb;
-      --text-light: #1a1a1a;
-      --card-bg-light: #ffffff;
-      --accent-light: #7c3aed;
-    }
     body {
-      font-family: 'Urbanist', sans-serif;
+      font-family: 'Inter', sans-serif;
+      background: #121212;
+      color: #eee;
       margin: 0;
-      background: var(--bg-dark);
-      color: var(--text-dark);
+      padding: 2rem;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      transition: background 0.3s, color 0.3s;
-    }
-    body.light {
-      background: var(--bg-light);
-      color: var(--text-light);
-    }
-    header, footer {
-      background: var(--card-bg-dark);
-      padding: 1rem 2rem;
-      text-align: center;
-      transition: background 0.3s, color 0.3s;
-    }
-    body.light header, body.light footer {
-      background: var(--card-bg-light);
-      color: var(--text-light);
-    }
-    header {
-      display: flex;
-      justify-content: space-between;
       align-items: center;
     }
-    .logo {
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: var(--accent-dark);
-      transition: color 0.3s;
-    }
-    body.light .logo {
-      color: var(--accent-light);
-    }
-    nav a {
-      margin-left: 1rem;
-      color: inherit;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    nav a[aria-current="page"] {
-      text-decoration: underline;
-      font-weight: 700;
-    }
-    .section {
-      padding: 2rem;
-      max-width: 960px;
-      margin: auto;
+    h1, h2 {
+      color: #61dafb;
+      margin-bottom: 1rem;
     }
     label {
       display: block;
-      margin-bottom: 0.5rem;
+      margin: 1rem 0 0.3rem;
       font-weight: 600;
     }
-    input[type="password"],
-    select {
-      width: 100%;
-      max-width: 320px;
-      padding: 0.6rem;
+    select, input[type="text"], input[type="password"] {
+      width: 250px;
+      padding: 0.5rem;
       border-radius: 6px;
-      border: 1px solid #555;
+      border: none;
       font-size: 1rem;
-      margin-bottom: 1rem;
-      outline: none;
-      transition: border-color 0.3s;
-      background: transparent;
-      color: inherit;
-    }
-    body.light input[type="password"],
-    body.light select {
-      border-color: #ccc;
-      background: #fff;
-      color: var(--text-light);
-    }
-    input[type="checkbox"] {
-      margin-right: 0.6rem;
-      transform: scale(1.2);
-      cursor: pointer;
     }
     button {
-      background: var(--accent-dark);
-      color: white;
-      font-weight: 600;
+      margin-top: 1rem;
+      background: #61dafb;
       border: none;
-      border-radius: 10px;
-      padding: 0.8rem 1.6rem;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 8px;
       cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    body.light button {
-      background: var(--accent-light);
+      transition: background-color 0.3s ease;
     }
     button:hover {
-      background: #5a21d4;
+      background: #21a1f1;
     }
     #tester {
       margin-top: 2rem;
-      border: 1px solid var(--accent-dark);
+      padding: 1rem;
+      background: #222;
       border-radius: 12px;
-      padding: 1.5rem;
-      background: #18181f;
-      display: none;
-      transition: background 0.3s;
-    }
-    body.light #tester {
-      background: #f0f0f3;
-      border-color: var(--accent-light);
-      color: var(--text-light);
-    }
-    .sneak-peeks {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.2rem;
-      margin-top: 1rem;
-    }
-    .sneak-peeks img {
+      max-width: 600px;
       width: 100%;
-      border-radius: 12px;
-    }
-    .buttons a {
-      background: var(--accent-dark);
-      padding: 0.8rem 1.4rem;
-      color: white;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 600;
-      margin: 0.5rem 0 0 0;
-      display: inline-block;
-      transition: background 0.3s ease;
-    }
-    body.light .buttons a {
-      background: var(--accent-light);
-      color: var(--text-light);
-    }
-    .buttons a:hover {
-      background: #5a21d4;
-    }
-    .setting-group {
-      margin-bottom: 1.5rem;
+      display: none;
+      color: #a0ffa0;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">PC Sandbox</div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="settings.html" aria-current="page">Settings</a>
-    </nav>
-  </header>
 
-  <section class="section">
-    <h1>Settings</h1>
+  <h1 id="title">Settings</h1>
 
-    <div class="setting-group">
-      <label>
-        <input type="checkbox" id="darkModeToggle" />
-        Enable Dark Mode
-      </label>
-    </div>
+  <label for="languageSelect" id="languageLabel">Language</label>
+  <select id="languageSelect" aria-label="Select Language">
+    <option value="en">English</option>
+    <option value="es">Español</option>
+    <option value="fr">Français</option>
+  </select>
 
-    <div class="setting-group">
-      <label>
-        <input type="checkbox" id="notificationsToggle" />
-        Enable Notifications
-      </label>
-    </div>
+  <label for="betaInput" id="betaLabel">Beta Tester Access Password</label>
+  <input type="password" id="betaInput" aria-describedby="betaHelp" />
+  <button id="betaButton">Unlock Beta Tester Access</button>
 
-    <div class="setting-group">
-      <label for="fontSizeSelect">Font Size</label>
-      <select id="fontSizeSelect" aria-label="Select font size">
-        <option value="small">Small</option>
-        <option value="medium" selected>Medium (Default)</option>
-        <option value="large">Large</option>
-      </select>
-    </div>
+  <div id="tester" tabindex="-1">
+    <h2 id="testerTitle">Beta Tester Section</h2>
+    <p id="testerMessage">Welcome to the Beta Tester program! Here are the latest sneak peeks and the early download link:</p>
+    <ul>
+      <li>Sneak Peek #1: New immersive environment system.</li>
+      <li>Sneak Peek #2: Experimental physics engine improvements.</li>
+      <li>Sneak Peek #3: Early access to version 0.9.1 download.</li>
+    </ul>
+    <a href="early-download-link.zip" download id="downloadLink">Download Early Build</a>
+  </div>
 
-    <div class="setting-group">
-      <label for="languageSelect">Language</label>
-      <select id="languageSelect" aria-label="Select language">
-        <option value="en" selected>English</option>
-        <option value="es">Spanish (Español)</option>
-        <option value="fr">French (Français)</option>
-      </select>
-    </div>
-
-    <hr />
-
-    <div class="setting-group">
-      <label for="betaInput">Enter Beta Access Password:</label>
-      <input type="password" id="betaInput" placeholder="Enter secure password" autocomplete="off" />
-      <button onclick="checkBetaAccess()">Unlock Beta Features</button>
-    </div>
-
-    <div id="tester" aria-live="polite" tabindex="-1">
-      <h2>Beta Tester Zone</h2>
-      <p>Thank you for supporting PC Sandbox early! Here's your exclusive content:</p>
-      <div class="sneak-peeks">
-        <img src="https://cdn.discordapp.com/attachments/1362201864283623506/1376417954329268285/image.png" alt="Screenshot 1" />
-        <img src="https://cdn.discordapp.com/attachments/1362201864283623506/1376418418244321368/image.png" alt="Screenshot 2" />
-      </div>
-      <div class="buttons">
-        <a href="#" download>Download Early Access</a>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    &copy; 2025 PC Sandbox. All rights reserved.
-  </footer>
-
-  <script>
-    // Apply saved theme & font size from localStorage on load
-    window.addEventListener('DOMContentLoaded', () => {
-      const darkModeEnabled = localStorage.getItem('darkMode') === 'true';
-      const notificationsEnabled = localStorage.getItem('notifications') === 'true';
-      const fontSize = localStorage.getItem('fontSize') || 'medium';
-      const language = localStorage.getItem('language') || 'en';
-
-      document.getElementById('darkModeToggle').checked = darkModeEnabled;
-      document.getElementById('notificationsToggle').checked = notificationsEnabled;
-      document.getElementById('fontSizeSelect').value = fontSize;
-      document.getElementById('languageSelect').value = language;
-
-      applyDarkMode(darkModeEnabled);
-      applyFontSize(fontSize);
-      applyLanguage(language);
-    });
-
-    // Dark Mode toggle logic
-    document.getElementById('darkModeToggle').addEventListener('change', (e) => {
-      const enabled = e.target.checked;
-      localStorage.setItem('darkMode', enabled);
-      applyDarkMode(enabled);
-    });
-
-    function applyDarkMode(enabled) {
-      if (enabled) {
-        document.body.classList.add('light');
-      } else {
-        document.body.classList.remove('light');
-      }
+<script>
+  const texts = {
+    en: {
+      title: "Settings",
+      languageLabel: "Language",
+      betaLabel: "Beta Tester Access Password",
+      betaButton: "Unlock Beta Tester Access",
+      testerTitle: "Beta Tester Section",
+      testerMessage: "Welcome to the Beta Tester program! Here are the latest sneak peeks and the early download link:",
+      sneak1: "Sneak Peek #1: New immersive environment system.",
+      sneak2: "Sneak Peek #2: Experimental physics engine improvements.",
+      sneak3: "Sneak Peek #3: Early access to version 0.0.1 download.",
+      downloadLink: "Download Early Build",
+      accessGranted: "Access granted. Welcome, Beta Tester!",
+      accessDenied: "Incorrect password. Access denied."
+    },
+    es: {
+      title: "Configuración",
+      languageLabel: "Idioma",
+      betaLabel: "Contraseña de acceso para Beta Tester",
+      betaButton: "Desbloquear acceso Beta Tester",
+      testerTitle: "Sección Beta Tester",
+      testerMessage: "¡Bienvenido al programa Beta Tester! Aquí están las últimas vistas previas y el enlace de descarga anticipada:",
+      sneak1: "Vista previa #1: Nuevo sistema de entornos inmersivos.",
+      sneak2: "Vista previa #2: Mejoras experimentales en el motor físico.",
+      sneak3: "Vista previa #3: Acceso anticipado a la versión 0.0.1.",
+      downloadLink: "Descargar versión anticipada",
+      accessGranted: "Acceso concedido. ¡Bienvenido, Beta Tester!",
+      accessDenied: "Contraseña incorrecta. Acceso denegado."
+    },
+    fr: {
+      title: "Paramètres",
+      languageLabel: "Langue",
+      betaLabel: "Mot de passe d'accès Beta Tester",
+      betaButton: "Déverrouiller l'accès Beta Tester",
+      testerTitle: "Section Beta Tester",
+      testerMessage: "Bienvenue au programme Beta Tester ! Voici les dernières avant-premières et le lien de téléchargement anticipé :",
+      sneak1: "Aperçu #1 : Nouveau système d’environnement immersif.",
+      sneak2: "Aperçu #2 : Améliorations expérimentales du moteur physique.",
+      sneak3: "Aperçu #3 : Accès anticipé à la version 0.0.1.",
+      downloadLink: "Télécharger la version anticipée",
+      accessGranted: "Accès accordé. Bienvenue, Beta Tester !",
+      accessDenied: "Mot de passe incorrect. Accès refusé."
     }
+  };
 
-    // Notifications toggle logic (simulate)
-    document.getElementById('notificationsToggle').addEventListener('change', (e) => {
-      const enabled = e.target.checked;
-      localStorage.setItem('notifications', enabled);
-      if (enabled) {
-        alert('Notifications enabled (simulated)');
-      } else {
-        alert('Notifications disabled (simulated)');
-      }
-    });
+  const password = 'R9v$3X!qLp&7Zb@Ws8#FnG2YmCt^4KdJJk!45GgkGkDFPOGDhMSn1%93$xF';
 
-    // Font size change logic
-    document.getElementById('fontSizeSelect').addEventListener('change', (e) => {
-      const size = e.target.value;
-      localStorage.setItem('fontSize', size);
-      applyFontSize(size);
-    });
+  // Elements
+  const languageSelect = document.getElementById('languageSelect');
+  const title = document.getElementById('title');
+  const languageLabel = document.getElementById('languageLabel');
+  const betaLabel = document.getElementById('betaLabel');
+  const betaButton = document.getElementById('betaButton');
+  const tester = document.getElementById('tester');
+  const testerTitle = document.getElementById('testerTitle');
+  const testerMessage = document.getElementById('testerMessage');
+  const downloadLink = document.getElementById('downloadLink');
 
-    function applyFontSize(size) {
-      if (size === 'small') {
-        document.body.style.fontSize = '14px';
-      } else if (size === 'large') {
-        document.body.style.fontSize = '20px';
-      } else {
-        document.body.style.fontSize = '16px';
-      }
+  // Update all UI text based on selected language
+  function updateLanguage(lang) {
+    const t = texts[lang];
+    title.textContent = t.title;
+    languageLabel.textContent = t.languageLabel;
+    betaLabel.textContent = t.betaLabel;
+    betaButton.textContent = t.betaButton;
+    testerTitle.textContent = t.testerTitle;
+    testerMessage.textContent = t.testerMessage;
+    downloadLink.textContent = t.downloadLink;
+
+    // Update sneak peeks list dynamically
+    const sneakPeeksList = tester.querySelector('ul');
+    sneakPeeksList.innerHTML = `
+      <li>${t.sneak1}</li>
+      <li>${t.sneak2}</li>
+      <li>${t.sneak3}</li>
+    `;
+  }
+
+  // Load saved language or default to English
+  let currentLang = localStorage.getItem('pcSandboxLanguage') || 'en';
+  languageSelect.value = currentLang;
+  updateLanguage(currentLang);
+
+  languageSelect.addEventListener('change', () => {
+    currentLang = languageSelect.value;
+    updateLanguage(currentLang);
+    localStorage.setItem('pcSandboxLanguage', currentLang);
+  });
+
+  // Beta tester unlock function
+  betaButton.addEventListener('click', () => {
+    const input = document.getElementById('betaInput').value.trim();
+    if (input === password) {
+      tester.style.display = 'block';
+      tester.focus();
+      alert(texts[currentLang].accessGranted);
+    } else {
+      alert(texts[currentLang].accessDenied);
     }
+  });
+</script>
 
-    // Language select (demo only)
-    document.getElementById('languageSelect').addEventListener('change', (e) => {
-      const lang = e.target.value;
-      localStorage.setItem('language', lang);
-      applyLanguage(lang);
-    });
-
-    function applyLanguage(lang) {
-      // This is a demo stub. You can expand with real localization.
-      const messages = {
-        en: 'Thank you for testing PC Sandbox! Here\'s your stuff:',
-        es: '¡Gracias por apoyar PC Sandbox temprano! Aquí está su contenido exclusivo:',
-        fr: 'Merci de soutenir PC Sandbox en avant-première ! Voici votre contenu exclusif :'
-      };
-      const testerMsg = document.querySelector('#tester p');
-      if (testerMsg) testerMsg.textContent = messages[lang] || messages.en;
-    }
-
-    // Beta tester unlock
-    function checkBetaAccess() {
-      const password = document.getElementById('betaInput').value.trim();
-      const testerSection = document.getElementById('tester');
-      if (password === 'R9v$3X!qLp&7Zb@Ws8#FnG2YmCt^4KdJJk!45GgkGkDFPOGDhMSn1%93$xF') {
-        testerSection.style.display = 'block';
-        testerSection.focus();
-        alert('Access granted. Welcome, Beta Tester!');
-      } else {
-        alert('Incorrect password. Access denied.');
-      }
-    }
-  </script>
 </body>
 </html>
