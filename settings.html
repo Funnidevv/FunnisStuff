@@ -206,6 +206,62 @@
       outline: none;
     }
 
+    /* New Beta Tester Settings GUI */
+    #betaTesterSettings {
+      background: #1c2031;
+      padding: 1.5rem 1.5rem 2rem 1.5rem;
+      border-radius: 14px;
+      box-shadow: 0 0 25px #5a70ffbb;
+      margin-top: 2rem;
+      color: #d0d4ff;
+      user-select: text;
+      display: none;
+    }
+    #betaTesterSettings h3 {
+      color: #7c8bff;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      font-size: 1.6rem;
+      text-shadow: 0 0 12px #7c8bff;
+    }
+    #betaTesterSettings p {
+      margin-bottom: 1.2rem;
+      color: #abb2ffcc;
+      font-weight: 600;
+      font-size: 1.05rem;
+      line-height: 1.4;
+    }
+    #betaTesterSettings ul {
+      margin-left: 1.4rem;
+      margin-bottom: 1.5rem;
+      color: #abb2ffcc;
+      font-weight: 600;
+      font-size: 1.05rem;
+      list-style: disc;
+    }
+    #betaTesterSettings ul li {
+      margin-bottom: 0.6rem;
+    }
+    #betaTesterSettings a#betaDownloadBtn {
+      display: inline-block;
+      background: #5a70ff;
+      padding: 14px 32px;
+      border-radius: 18px;
+      color: white;
+      font-weight: 700;
+      font-size: 1.15rem;
+      box-shadow: 0 6px 25px #5a70ffbb;
+      text-decoration: none;
+      user-select: none;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    #betaTesterSettings a#betaDownloadBtn:hover,
+    #betaTesterSettings a#betaDownloadBtn:focus {
+      background: #3e50ff;
+      box-shadow: 0 8px 35px #3e50ffbb;
+      outline: none;
+    }
+
     /* Responsive */
     @media (max-width: 640px) {
       main h1 {
@@ -217,6 +273,10 @@
       nav a {
         margin-left: 1rem;
         font-size: 0.9rem;
+      }
+      #betaTesterSettings a#betaDownloadBtn {
+        width: 100%;
+        text-align: center;
       }
     }
   </style>
@@ -231,161 +291,103 @@
     </nav>
     <div class="lang-select-container">
       <label for="languageSelect" id="languageLabel">Language:</label>
-      <select id="languageSelect" aria-label="Select Language">
-        <option value="en">English</option>
-        <option value="es">Español</option>
-        <option value="fr">Français</option>
+      <select id="languageSelect" aria-labelledby="languageLabel">
+        <option value="en" selected>English</option>
+        <option value="ru">Русский</option>
       </select>
     </div>
   </header>
 
-  <main>
-    <h1 id="settingsTitle">Settings</h1>
+  <main role="main" aria-label="Settings page main content">
+    <h1>Settings</h1>
 
-    <section class="section" aria-label="General Settings">
-      <h2 id="generalSettingsTitle">General</h2>
-      <label for="darkModeCheckbox">
-        <input type="checkbox" id="darkModeCheckbox" />
-        <span id="darkModeLabel">Enable Dark Mode</span>
-      </label>
-      <label for="languageSelectMain" id="languageMainLabel" style="margin-top: 15px; display:block;">
-        Language:
-      </label>
-      <select id="languageSelectMain" aria-labelledby="languageMainLabel" style="width: 100%; max-width: 200px;">
-        <option value="en">English</option>
-        <option value="es">Español</option>
-        <option value="fr">Français</option>
-      </select>
-    </section>
+    <section class="section beta-tester" aria-labelledby="betaTesterHeading">
+      <h2 id="betaTesterHeading">Beta Tester Sign-Up</h2>
+      <form id="betaForm" aria-describedby="betaFormDesc" novalidate>
+        <label for="betaKeyInput">Beta Access Key</label>
+        <input
+          type="text"
+          id="betaKeyInput"
+          name="betaKeyInput"
+          placeholder="Enter your beta key here"
+          aria-required="true"
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <button type="submit" id="betaSubmitBtn" aria-live="polite" aria-describedby="betaMsg" aria-disabled="false">Submit</button>
+      </form>
+      <div id="betaMsg" role="alert" aria-live="assertive" style="margin-top: 1rem; font-weight: 700;"></div>
 
-    <section class="section beta-tester" aria-label="Beta Tester Options">
-      <h2 id="betaTesterTitle">Beta Tester</h2>
-      <button type="button" id="toggleBetaTabBtn" aria-expanded="false" aria-controls="betaTabContent">
-        Toggle Beta Tester Options
-      </button>
-      <div id="betaTabContent" class="tester-tab" role="region" aria-live="polite" aria-hidden="true" tabindex="-1">
-        <form id="betaTesterForm" novalidate>
-          <label for="betaKeyInput" id="betaKeyLabel">Beta Tester Key:</label>
-          <input
-            type="text"
-            id="betaKeyInput"
-            placeholder="Enter your beta tester key"
-            required
-            aria-required="true"
-            aria-describedby="betaKeyHelp"
-            autocomplete="off"
-          />
-          <small id="betaKeyHelp" style="color:#a0aaff; display:block; margin-bottom: 1rem;">
-            Enter your beta tester key to join the beta program.
-          </small>
-
-          <button type="submit" id="betaSubmitBtn">Submit</button>
-          <p id="betaSubmitMessage" aria-live="assertive" style="margin-top:1rem; font-weight:600;"></p>
-        </form>
+      <!-- New Beta Tester Settings GUI -->
+      <div id="betaTesterSettings" aria-live="polite" aria-atomic="true" tabindex="0">
+        <h3>Beta Tester Settings</h3>
+        <p>Thank you for validating your key! Here's a sneak peek at what you can access:</p>
+        <ul>
+          <li>Early access to new features and gameplay modes.</li>
+          <li>Exclusive cosmetic items and customization options.</li>
+          <li>Priority feedback channel with the developers.</li>
+        </ul>
+        <a href="https://example.com/early-beta-download" target="_blank" rel="noopener" id="betaDownloadBtn">Early Beta Download</a>
       </div>
     </section>
   </main>
 
   <script>
-    // DOM references
-    const darkModeCheckbox = document.getElementById('darkModeCheckbox');
-    const languageSelectMain = document.getElementById('languageSelectMain');
-    const languageSelectHeader = document.getElementById('languageSelect');
-    const toggleBetaTabBtn = document.getElementById('toggleBetaTabBtn');
-    const betaTabContent = document.getElementById('betaTabContent');
-    const betaTesterForm = document.getElementById('betaTesterForm');
-    const betaSubmitMessage = document.getElementById('betaSubmitMessage');
+    (() => {
+      const betaForm = document.getElementById('betaForm');
+      const betaKeyInput = document.getElementById('betaKeyInput');
+      const betaSubmitBtn = document.getElementById('betaSubmitBtn');
+      const betaMsg = document.getElementById('betaMsg');
+      const betaTesterSettings = document.getElementById('betaTesterSettings');
 
-    // Load settings from localStorage on page load
-    window.addEventListener('DOMContentLoaded', () => {
-      // Dark mode state
-      const darkMode = localStorage.getItem('darkMode') === 'true';
-      darkModeCheckbox.checked = darkMode;
-      applyDarkMode(darkMode);
+      // Example valid keys (should be replaced with actual secure validation in production)
+      const validKeys = ['TESTKEY123', 'ALPHA999', 'BETA2025'];
 
-      // Language selection
-      const lang = localStorage.getItem('language') || 'en';
-      languageSelectMain.value = lang;
-      languageSelectHeader.value = lang;
+      betaForm.addEventListener('submit', (event) => {
+        event.preventDefault();
 
-      // Beta tester tab hidden by default
-      betaTabContent.classList.remove('active');
-      betaTabContent.setAttribute('aria-hidden', 'true');
-      toggleBetaTabBtn.setAttribute('aria-expanded', 'false');
-    });
+        const enteredKey = betaKeyInput.value.trim();
 
-    // Dark mode toggle handler
-    darkModeCheckbox.addEventListener('change', (e) => {
-      const isDark = e.target.checked;
-      localStorage.setItem('darkMode', isDark);
-      applyDarkMode(isDark);
-    });
+        // Clear previous messages and hide beta tester settings
+        betaMsg.textContent = '';
+        betaTesterSettings.style.display = 'none';
 
-    // Apply dark mode by toggling body class
-    function applyDarkMode(isDark) {
-      if (isDark) {
-        document.body.style.background = 'linear-gradient(135deg, #0a0b10 0%, #10131a 100%)';
-        document.body.style.color = '#cdd2ff';
-      } else {
-        document.body.style.background = 'linear-gradient(135deg, #0f1117 0%, #181c27 100%)';
-        document.body.style.color = '#d0d4ff';
-      }
-    }
+        if (enteredKey.length === 0) {
+          betaMsg.style.color = '#ff6666';
+          betaMsg.textContent = 'Please enter your beta access key.';
+          betaKeyInput.focus();
+          return;
+        }
 
-    // Language selector sync
-    languageSelectMain.addEventListener('change', (e) => {
-      const lang = e.target.value;
-      localStorage.setItem('language', lang);
-      languageSelectHeader.value = lang;
-      // Here you could add actual language switching logic
-    });
+        if (validKeys.includes(enteredKey.toUpperCase())) {
+          betaMsg.style.color = '#8bff8b';
+          betaMsg.textContent = 'Key Valid, Giving Access To Beta Tester Stuff';
 
-    languageSelectHeader.addEventListener('change', (e) => {
-      const lang = e.target.value;
-      localStorage.setItem('language', lang);
-      languageSelectMain.value = lang;
-      // Here you could add actual language switching logic
-    });
+          // Disable input and submit to prevent re-submitting
+          betaKeyInput.disabled = true;
+          betaSubmitBtn.disabled = true;
+          betaSubmitBtn.setAttribute('aria-disabled', 'true');
 
-    // Beta tester tab toggle
-    toggleBetaTabBtn.addEventListener('click', () => {
-      const isExpanded = toggleBetaTabBtn.getAttribute('aria-expanded') === 'true';
-      if (isExpanded) {
-        betaTabContent.classList.remove('active');
-        betaTabContent.setAttribute('aria-hidden', 'true');
-        toggleBetaTabBtn.setAttribute('aria-expanded', 'false');
-      } else {
-        betaTabContent.classList.add('active');
-        betaTabContent.setAttribute('aria-hidden', 'false');
-        toggleBetaTabBtn.setAttribute('aria-expanded', 'true');
-        betaTabContent.focus();
-      }
-    });
+          // Show Beta Tester Settings GUI
+          betaTesterSettings.style.display = 'block';
 
-    // Beta tester form submit handler
-    betaTesterForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const keyInput = document.getElementById('betaKeyInput');
-      const key = keyInput.value.trim();
+          // Move focus to Beta Tester Settings for accessibility
+          betaTesterSettings.focus();
+        } else {
+          betaMsg.style.color = '#ff6666';
+          betaMsg.textContent = 'Invalid key. Please try again.';
+          betaKeyInput.focus();
+        }
+      });
 
-      // The beta tester key to validate against:
-      const validKey = 'R9v$3X!qLp&7Zb@Ws8#FnG2YmCt^4KdJJk!45GgkGkDFPOGDhMSn1%93$xF';
-
-      if (key !== validKey) {
-        betaSubmitMessage.style.color = '#ff6b6b';
-        betaSubmitMessage.textContent = 'Invalid beta tester key. Please try again.';
-        keyInput.focus();
-        return;
-      }
-
-      // Success
-      betaSubmitMessage.style.color = '#a0ffa0';
-      betaSubmitMessage.textContent = `Thanks! You are signed up for beta testing.`;
-
-      // Reset form after success
-      betaTesterForm.reset();
-    });
+      // Accessibility: handle Enter key on input to submit
+      betaKeyInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          betaSubmitBtn.click();
+        }
+      });
+    })();
   </script>
-
 </body>
 </html>
