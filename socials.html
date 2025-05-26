@@ -4,74 +4,159 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Socials - PC Sandbox</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
   <style>
-    /* reuse same styles from index */
-    body {
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #0f0f0f;
-      color: #f0f0f0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+      color: #e0e0e0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    a:focus,
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* NAVIGATION */
+    header {
+      background: #181818;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+      padding: 1.2rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-weight: 600;
+      font-size: 1.6rem;
+      letter-spacing: 1.5px;
+      color: #5865f2;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .nav-links a {
+      font-weight: 500;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      color: #c0c0c0;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      background-color: #5865f2;
+      color: white;
+      box-shadow: 0 0 8px #5865f2;
+    }
+
+    /* MAIN CONTENT */
+    main {
+      flex-grow: 1;
+      max-width: 700px;
+      margin: 4rem auto 6rem;
+      padding: 0 1rem;
       text-align: center;
     }
-    header {
-      padding: 2em;
-      background: #1a1a1a;
+    main h1 {
+      font-weight: 700;
+      font-size: 3rem;
+      margin-bottom: 1.8rem;
+      color: #5865f2;
+      text-shadow: 0 0 10px #5865f2;
     }
-    nav a {
-      color: #5865F2;
-      text-decoration: none;
-      margin: 0 1em;
-      font-weight: bold;
-    }
-    nav a:hover {
-      color: #4752c4;
-    }
-    h2 {
-      margin-top: 0;
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
     }
     .social-links a {
-      display: inline-block;
-      margin: 1em;
-      padding: 1em 2em;
-      background: #5865F2;
+      flex: 1 1 140px;
+      max-width: 180px;
+      background: #5865f2;
       color: white;
-      text-decoration: none;
-      border-radius: 10px;
-      transition: 0.3s;
+      padding: 1.1rem 1.5rem;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      box-shadow: 0 6px 12px rgba(88, 101, 242, 0.5);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
     .social-links a:hover {
       background: #4752c4;
+      box-shadow: 0 8px 18px rgba(71, 82, 196, 0.7);
     }
+
     footer {
-      background: #1a1a1a;
-      padding: 1em;
-      font-size: 0.9em;
-      color: #888;
-      margin-top: 4em;
+      background: #181818;
+      text-align: center;
+      padding: 1rem 2rem;
+      font-weight: 300;
+      font-size: 0.9rem;
+      color: #666;
+      box-shadow: inset 0 1px 2px rgba(255,255,255,0.05);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      main h1 {
+        font-size: 2.2rem;
+      }
+      .social-links a {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
+      nav {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .nav-links {
+        gap: 1rem;
+      }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>PC Sandbox</h1>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="socials.html">Socials</a>
-      <a href="sneak-peeks.html">Sneak Peeks</a>
+      <div class="logo">PC Sandbox</div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="socials.html" class="active">Socials</a>
+        <a href="sneak-peeks.html">Sneak Peeks</a>
+      </div>
     </nav>
   </header>
 
-  <section>
-    <h2>Our Socials</h2>
+  <main>
+    <h1>Follow Us</h1>
     <div class="social-links">
-      <a href="https://discord.gg/W2d7Gb8sgr" target="_blank">Discord</a>
-    </div>
-  </section>
-
-  <footer>
-    &copy; 2025 PC Sandbox. All rights reserved.
-  </footer>
-
-</body>
-</html>
+      <a href="https://discord.gg/W2d7Gb8sgr" target="_blank" rel="noopener noreferrer">Discord Server</a>
