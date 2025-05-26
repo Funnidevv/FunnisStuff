@@ -115,40 +115,111 @@
 </head>
 <body>
 
-<script>
-  const isDown = false; // Change to false when not in maintenance mode
+  <!-- Maintenance Mode UI -->
+  <div id="maintenance-ui" style="display:none;">
+    <header>
+      <nav>
+        <div class="logo">PC Sandbox</div>
+      </nav>
+    </header>
+    <main>
+      <h1>🚧 Down for Maintenance</h1>
+      <p class="lead">We're currently updating the site.<br>Please check back later!</p>
+      <div class="buttons">
+        <a href="https://discord.gg/W2d7Gb8sgr" target="_blank" rel="noopener">Join our Discord</a>
+      </div>
+    </main>
+    <footer>
+      &copy; 2025 PC Sandbox. All rights reserved.
+    </footer>
+  </div>
 
-  if (isDown) {
-    document.write(`
-      <header>
-        <nav>
-          <div class="logo">PC Sandbox</div>
-        </nav>
-      </header>
-      <main>
-        <h1>🚧 Down for Maintenance</h1>
-        <p class="lead">We're currently updating the site.<br>Please check back later!</p>
-        <div class="buttons">
-          <a href="https://discord.gg/W2d7Gb8sgr" target="_blank" rel="noopener">Join our Discord</a>
+  <!-- Full Site UI -->
+  <div id="full-site" style="display:none;">
+    <header>
+      <nav>
+        <div class="logo">PC Sandbox</div>
+        <section class="nav-links" aria-label="Main navigation">
+          <a href="index.html" class="active" aria-current="page">Home</a>
+        </section>
+      </nav>
+    </header>
+
+    <main>
+      <h1>PC Sandbox</h1>
+      <p class="lead">Explore, build, and experiment in the ultimate sandbox experience!</p>
+
+      <div class="buttons">
+        <a href="https://discord.gg/W2d7Gb8sgr" target="_blank" rel="noopener" aria-label="Join our Discord Server">Discord Server</a>
+        <a href="#" download aria-label="Download PC Sandbox - coming soon">Download PC Sandbox (SOON)</a>
+      </div>
+
+      <section class="sneak-peeks-container">
+        <h2>Sneak Peeks</h2>
+        <div class="sneak-peeks" id="sneak-peeks">
+          <img src="https://cdn.discordapp.com/attachments/1362201864283623506/1376417954329268285/image.png" alt="Development Build Screenshot - May 26" />
+          <img src="https://cdn.discordapp.com/attachments/1362201864283623506/1376418418244321368/image.png" alt="Another Screenshot from May 26 Build" />
         </div>
-      </main>
-      <footer>
-        &copy; 2025 PC Sandbox. All rights reserved.
-      </footer>
-    `);
-  }
-</script>
+      </section>
 
-<!-- Main Site Hidden When isDown === true -->
-<div id="full-site" style="display: none;">
-  <!-- Your full site content goes here, unchanged -->
-</div>
+      <section class="social-links" aria-label="Social media links">
+        <h1>Join Us!</h1>
+        <a href="https://discord.gg/W2d7Gb8sgr" target="_blank" rel="noopener noreferrer">Discord Server</a>
+      </section>
+    </main>
 
-<script>
-  if (!isDown) {
-    document.getElementById("full-site").style.display = "block";
-  }
-</script>
+    <footer>
+      &copy; 2025 PC Sandbox. All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    const isDown = false; // Change to false to show the full site
+
+    if (isDown) {
+      document.getElementById('maintenance-ui').style.display = 'block';
+      document.getElementById('full-site').style.display = 'none';
+    } else {
+      document.getElementById('maintenance-ui').style.display = 'none';
+      document.getElementById('full-site').style.display = 'block';
+
+      // Reveal sneak-peek images with animation
+      document.addEventListener('DOMContentLoaded', () => {
+        const images = document.querySelectorAll('.sneak-peeks img');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.5 });
+        images.forEach(img => observer.observe(img));
+      });
+    }
+  </script>
+
+  <style>
+    /* Additional styles for sneak peek images animation */
+    .sneak-peeks img {
+      width: 300px;
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(88, 101, 242, 0.5);
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s ease;
+      cursor: pointer;
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    .sneak-peeks img.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .sneak-peeks img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 30px rgba(88, 101, 242, 0.8);
+    }
+  </style>
 
 </body>
 </html>
