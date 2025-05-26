@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Maintenance - PC Sandbox</title>
+  <title>Site Maintenance</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
   <style>
+    /* Reset */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -13,38 +14,57 @@
     }
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
-      color: #e0e0e0;
+      background: linear-gradient(135deg, #0f1117 0%, #181c27 100%);
+      color: #d0d4ff;
+      min-height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       text-align: center;
-      height: 100vh;
-      padding: 2rem;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding: 1rem;
+      user-select: none;
     }
-    .message-box {
-      max-width: 600px;
-      padding: 3rem;
+    main {
+      max-width: 480px;
+      padding: 2rem 3rem;
+      background: #1c2031;
       border-radius: 16px;
-      background-color: #181818;
-      box-shadow: 0 6px 24px rgba(88, 101, 242, 0.4);
+      box-shadow: 0 0 30px #5a70ffbb;
     }
     h1 {
-      font-size: 2.5rem;
-      color: #5865f2;
+      font-weight: 700;
+      font-size: 3.6rem;
       margin-bottom: 1rem;
-      text-shadow: 0 0 10px #5865f2;
+      color: #7c8bff;
+      text-shadow: 0 0 15px #7c8bff;
+      user-select: none;
     }
     p {
-      font-size: 1.2rem;
-      color: #ccc;
+      font-weight: 300;
+      font-size: 1.4rem;
+      color: #abb2ffcc;
+      line-height: 1.6;
+      user-select: none;
+    }
+    @media (max-width: 480px) {
+      main {
+        padding: 1.5rem 2rem;
+      }
+      h1 {
+        font-size: 2.6rem;
+      }
+      p {
+        font-size: 1.1rem;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="message-box">
-    <h1>Site Down For Maintenance</h1>
-    <p>We're currently updating this piece of the side for PC Sandbox and will be back online shortly. Thank you for your patience!</p>
-  </div>
+  <main role="main" aria-live="polite">
+    <h1>Site is down for Maintenance</h1>
+    <p>Please Check Back Later.</p>
+  </main>
 </body>
 </html>
