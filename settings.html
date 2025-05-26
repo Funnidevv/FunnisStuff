@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PC Sandbox</title>
+  <title>Site Maintenance</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
   <style>
     /* Reset */
@@ -18,545 +18,53 @@
       color: #d0d4ff;
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      transition: background 0.8s ease;
-    }
-    a {
-      color: #8ba0ff;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    a:hover, a:focus {
-      color: #5a70ff;
-      text-decoration: underline;
-      outline: none;
-    }
-
-    header {
-      background: #1c2031;
-      box-shadow: 0 0 20px #5a70ff88;
-      padding: 1rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo {
-      font-weight: 700;
-      font-size: 1.8rem;
-      color: #7c8bff;
-      text-shadow: 0 0 12px #7c8bff;
+      padding: 1rem;
       user-select: none;
     }
-
-    nav a {
-      font-weight: 600;
-      font-size: 1rem;
-      margin-left: 1.5rem;
-      padding: 0.3rem 0.6rem;
-      border-radius: 6px;
-      box-shadow: 0 0 12px transparent;
-      user-select: none;
-    }
-    nav a.active, nav a:focus {
-      background: #5a70ff;
-      box-shadow: 0 0 12px #5a70ff;
-      color: #fff;
-      outline: none;
-    }
-
     main {
-      flex-grow: 1;
-      max-width: 960px;
-      margin: 4rem auto 6rem;
-      padding: 0 1rem;
-      text-align: center;
+      max-width: 480px;
+      padding: 2rem 3rem;
+      background: #1c2031;
+      border-radius: 16px;
+      box-shadow: 0 0 30px #5a70ffbb;
     }
-
-    main h1 {
+    h1 {
       font-weight: 700;
-      font-size: 3.2rem;
+      font-size: 3.6rem;
       margin-bottom: 1rem;
       color: #7c8bff;
       text-shadow: 0 0 15px #7c8bff;
       user-select: none;
     }
-    .lead {
+    p {
       font-weight: 300;
-      font-size: 1.25rem;
-      margin-bottom: 3rem;
+      font-size: 1.4rem;
       color: #abb2ffcc;
-      line-height: 1.5;
-    }
-
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.3rem;
-      margin-bottom: 5rem;
-    }
-    .buttons a {
-      background: #5a70ff;
-      color: #fff;
-      padding: 1.1rem 2rem;
-      border-radius: 12px;
-      font-weight: 700;
-      font-size: 1.1rem;
-      box-shadow: 0 6px 20px #5a70ff88;
-      cursor: pointer;
-      user-select: none;
-      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .buttons a:hover:not(.disabled) {
-      background: #3e50ff;
-      box-shadow: 0 8px 30px #3e50ffbb;
-      transform: scale(1.07);
-    }
-    .buttons a.disabled {
-      pointer-events: none;
-      opacity: 0.5;
-      cursor: default;
-    }
-
-    .sneak-peeks-container {
-      margin-top: 2rem;
-      text-align: left;
-      max-width: 960px;
-      margin-left: auto;
-      margin-right: auto;
+      line-height: 1.6;
       user-select: none;
     }
-    .sneak-peeks-container h2 {
-      font-weight: 700;
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #7c8bff;
-      text-shadow: 0 0 12px #7c8bff;
-    }
-    .sneak-peeks {
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .sneak-peeks img {
-      width: 320px;
-      max-width: 100%;
-      border-radius: 14px;
-      box-shadow: 0 8px 25px #5a70ff88;
-      cursor: pointer;
-      opacity: 0;
-      transform: scale(0.85);
-      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s ease;
-      user-select: none;
-    }
-    .sneak-peeks img.visible {
-      opacity: 1;
-      transform: scale(1);
-    }
-    .sneak-peeks img:hover {
-      transform: scale(1.08);
-      box-shadow: 0 12px 40px #3e50ffcc;
-    }
-
-    footer {
-      background: #1c2031;
-      text-align: center;
-      padding: 1rem 2rem;
-      font-weight: 300;
-      font-size: 0.9rem;
-      color: #99aaffcc;
-      box-shadow: inset 0 1px 3px #00000080;
-      user-select: none;
-    }
-
-    /* Language selector styling */
-    .lang-select-container {
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: #abb2ffcc;
-      font-weight: 500;
-      font-size: 0.95rem;
-      user-select: none;
-    }
-    select#languageSelect {
-      background: #2a2f48;
-      border: none;
-      border-radius: 6px;
-      color: #abb2ff;
-      padding: 0.3rem 0.7rem;
-      font-weight: 600;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      user-select: none;
-    }
-    select#languageSelect:hover, select#languageSelect:focus {
-      background: #3e50ff;
-      color: white;
-      outline: none;
-    }
-
-    /* Settings panel */
-    #settingsPanel {
-      max-width: 960px;
-      margin: 0 auto 6rem;
-      padding: 1.5rem 2rem;
-      background: #202440dd;
-      border-radius: 14px;
-      color: #ccd4ff;
-      user-select: none;
-      box-shadow: 0 0 20px #5a70ffbb;
-      text-align: left;
-    }
-    #settingsPanel h2 {
-      margin-bottom: 1rem;
-      color: #9bb0ff;
-      text-shadow: 0 0 8px #7c8bffaa;
-    }
-    #settingsPanel label {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 1rem;
-      gap: 0.5rem;
-    }
-    #settingsPanel input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      cursor: pointer;
-    }
-    #settingsPanel select,
-    #settingsPanel input[type="text"] {
-      margin-left: 0.5rem;
-      padding: 0.3rem 0.6rem;
-      font-size: 1rem;
-      border-radius: 6px;
-      border: none;
-      background: #2a2f48;
-      color: #abb2ff;
-      font-weight: 600;
-      user-select: text;
-      width: 100%;
-      max-width: 300px;
-    }
-    #betaStatus {
-      margin-top: 1rem;
-      background: #3e50ffcc;
-      padding: 1rem 1.5rem;
-      border-radius: 12px;
-      font-weight: 600;
-      color: #fff;
-      box-shadow: 0 0 15px #3e50ffbb;
-    }
-    #betaStatus a {
-      color: #ffd966;
-      font-weight: 700;
-      text-decoration: underline;
-      cursor: pointer;
-    }
-
-    /* Responsive */
-    @media (max-width: 640px) {
-      main h1 {
-        font-size: 2.4rem;
+    @media (max-width: 480px) {
+      main {
+        padding: 1.5rem 2rem;
       }
-      .buttons a {
-        flex: 1 1 100%;
-        max-width: 100%;
+      h1 {
+        font-size: 2.6rem;
       }
-      .sneak-peeks {
-        flex-direction: column;
-        align-items: center;
-      }
-      .sneak-peeks img {
-        width: 90vw;
-      }
-      nav a {
-        margin-left: 1rem;
-        font-size: 0.9rem;
-      }
-      #settingsPanel label {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      #settingsPanel select,
-      #settingsPanel input[type="text"] {
-        width: 100%;
-        margin-left: 0;
+      p {
+        font-size: 1.1rem;
       }
     }
   </style>
 </head>
 <body>
-
-  <header>
-    <div class="logo">PC Sandbox</div>
-    <nav>
-      <a href="index.html" class="active" aria-current="page" id="homeTab">Home</a>
-      <a href="settings.html" id="settingsTab">Settings</a>
-    </nav>
-    <div class="lang-select-container">
-      <label for="languageSelect" id="languageLabel">Language:</label>
-      <select id="languageSelect" aria-label="Select Language">
-        <option value="en">English</option>
-        <option value="es">Español</option>
-        <option value="fr">Français</option>
-      </select>
-    </div>
-  </header>
-
-  <main>
-    <h1 id="mainTitle">PC Sandbox</h1>
-    <p class="lead" id="leadText">Explore, build, and experiment in the ultimate sandbox experience!</p>
-
-    <div class="buttons">
-      <a href="https://discord.gg/W2d7Gb8sgr" target="_blank" rel="noopener" aria-label="Join our Discord Server" id="discordBtn">Discord Server</a>
-      <a href="#" download aria-label="Download PC Sandbox - coming soon" id="downloadBtn" class="disabled" title="Coming soon">Download PC Sandbox (SOON)</a>
-    </div>
-
-    <section class="sneak-peeks-container" aria-label="Sneak Peeks">
-      <h2 id="sneakTitle">Sneak Peeks</h2>
-      <div class="sneak-peeks" id="sneak-peeks">
-        <img src="https://cdn.discordapp.com/attachments/1362201864283623506/1376417954329268285/image.png?ex=6835409c&is=6833ef1c&hm=a323b13025e3bf35c3db6192716b330f82d6073f06359193b1bfab3639bbc04b&" alt="Development Build Screenshot - May 26" />
-        <img src="https://cdn.discordapp.com/attachments/1362201864283623506/1376418418244321368/image.png?ex=6835410b&is=6833ef8b&hm=027511314463ed2250d884ae58140122b52c9aa3f93e619d632471164a8558a7&" alt="Another Screenshot from May 26 Build" />
-      </div>
-    </section>
-
-    <!-- Settings Panel -->
-    <section id="settingsPanel" aria-label="Settings Panel">
-      <h2>Settings</h2>
-      <label>
-        <input type="checkbox" id="toggleBgMusic" />
-        Enable Background Music
-      </label>
-      <label>
-        <input type="checkbox" id="toggleTooltips" />
-        Show Tooltips
-      </label>
-      <label for="backgroundSelect">Choose Background:</label>
-      <select id="backgroundSelect" aria-label="Background Changer">
-        <!-- Options added by JS -->
-      </select>
-
-      <label for="betaKeyInput">Enable Beta Features (Enter Key):</label>
-      <input type="text" id="betaKeyInput" placeholder="Enter beta key here" autocomplete="off" />
-      <button id="enableBetaBtn" style="margin-top: 0.5rem; cursor:pointer;">Enable Beta Features</button>
-
-      <div id="betaStatus" style="display:none;">
-        <p>You have enabled beta features!</p>
-        <p><a href="#" id="betaDownloadLink" download>Download Early Access Build</a></p>
-      </div>
-    </section>
-
+  <main role="main" aria-live="polite">
+    <h1>Site is down for Maintenance</h1>
+    <p>Please Check Back Later.</p>
   </main>
-
-  <footer>
-    &copy; 2025 PC Sandbox. All rights reserved.
-  </footer>
-
-  <script>
-    // Language translations
-    const texts = {
-      en: {
-        mainTitle: "PC Sandbox",
-        leadText: "Explore, build, and experiment in the ultimate sandbox experience!",
-        discordBtn: "Discord Server",
-        downloadBtn: "Download PC Sandbox (SOON)",
-        sneakTitle: "Sneak Peeks",
-        bgMusic: "Enable Background Music",
-        tooltips: "Show Tooltips",
-        chooseBg: "Choose Background:",
-        enableBeta: "Enable Beta Features (Enter Key):",
-        betaEnabledMsg: "You have enabled beta features!",
-        betaDownload: "Download Early Access Build"
-      },
-      es: {
-        mainTitle: "PC Sandbox",
-        leadText: "¡Explora, construye y experimenta en la experiencia definitiva de sandbox!",
-        discordBtn: "Servidor de Discord",
-        downloadBtn: "Descargar PC Sandbox (PRÓXIMAMENTE)",
-        sneakTitle: "Avances",
-        bgMusic: "Habilitar música de fondo",
-        tooltips: "Mostrar consejos",
-        chooseBg: "Elegir fondo:",
-        enableBeta: "Habilitar funciones beta (Ingrese clave):",
-        betaEnabledMsg: "¡Has habilitado las funciones beta!",
-        betaDownload: "Descargar versión anticipada"
-      },
-      fr: {
-        mainTitle: "PC Sandbox",
-        leadText: "Explorez, construisez et expérimentez dans l'expérience ultime du bac à sable !",
-        discordBtn: "Serveur Discord",
-        downloadBtn: "Télécharger PC Sandbox (BIENTÔT)",
-        sneakTitle: "Aperçus",
-        bgMusic: "Activer la musique de fond",
-        tooltips: "Afficher les info-bulles",
-        chooseBg: "Choisir un arrière-plan :",
-        enableBeta: "Activer les fonctionnalités bêta (Entrez la clé) :",
-        betaEnabledMsg: "Vous avez activé les fonctionnalités bêta !",
-        betaDownload: "Télécharger la version anticipée"
-      }
-    };
-
-    const betaKey = "JSDFIJOSDFOISIDJFSDIJOFIDSJOFS0845380238540809*(%#**#()%)*(2138192480(JSKAD";
-
-    // Elements
-    const languageSelect = document.getElementById('languageSelect');
-    const mainTitle = document.getElementById('mainTitle');
-    const leadText = document.getElementById('leadText');
-    const discordBtn = document.getElementById('discordBtn');
-    const downloadBtn = document.getElementById('downloadBtn');
-    const sneakTitle = document.getElementById('sneakTitle');
-    const toggleBgMusic = document.getElementById('toggleBgMusic');
-    const toggleTooltips = document.getElementById('toggleTooltips');
-    const backgroundSelect = document.getElementById('backgroundSelect');
-    const betaKeyInput = document.getElementById('betaKeyInput');
-    const enableBetaBtn = document.getElementById('enableBetaBtn');
-    const betaStatus = document.getElementById('betaStatus');
-    const betaDownloadLink = document.getElementById('betaDownloadLink');
-
-    // Load language from localStorage or default to English
-    function loadLanguage() {
-      const lang = localStorage.getItem('pcsb_language') || 'en';
-      languageSelect.value = lang;
-      updateLanguageTexts(lang);
-    }
-    function updateLanguageTexts(lang) {
-      const t = texts[lang] || texts.en;
-      mainTitle.textContent = t.mainTitle;
-      leadText.textContent = t.leadText;
-      discordBtn.textContent = t.discordBtn;
-      downloadBtn.textContent = t.downloadBtn;
-      sneakTitle.textContent = t.sneakTitle;
-      document.querySelector('label[for="toggleBgMusic"]').textContent = t.bgMusic;
-      document.querySelector('label[for="toggleTooltips"]').textContent = t.tooltips;
-      document.querySelector('label[for="backgroundSelect"]').textContent = t.chooseBg;
-      document.querySelector('label[for="betaKeyInput"]').textContent = t.enableBeta;
-      betaStatus.querySelector('p').textContent = t.betaEnabledMsg;
-      betaDownloadLink.textContent = t.betaDownload;
-    }
-    languageSelect.addEventListener('change', () => {
-      localStorage.setItem('pcsb_language', languageSelect.value);
-      updateLanguageTexts(languageSelect.value);
-    });
-    loadLanguage();
-
-    // Background images list (simulate 100+ backgrounds)
-    const backgrounds = [];
-    for(let i=1; i<=100; i++) {
-      backgrounds.push(`https://picsum.photos/id/${i+100}/1200/800`); // Picsum images with different IDs
-    }
-
-    // Populate background select
-    function populateBackgrounds() {
-      backgrounds.forEach((bgUrl, idx) => {
-        const opt = document.createElement('option');
-        opt.value = bgUrl;
-        opt.textContent = `Background #${idx + 1}`;
-        backgroundSelect.appendChild(opt);
-      });
-      // Load saved background or default first
-      const savedBg = localStorage.getItem('pcsb_background');
-      if(savedBg && backgrounds.includes(savedBg)) {
-        backgroundSelect.value = savedBg;
-        setBackground(savedBg);
-      } else {
-        backgroundSelect.value = backgrounds[0];
-        setBackground(backgrounds[0]);
-      }
-    }
-
-    function setBackground(url) {
-      document.body.style.background = `url(${url}) center center/cover no-repeat fixed, linear-gradient(135deg, #0f1117 0%, #181c27 100%)`;
-      localStorage.setItem('pcsb_background', url);
-    }
-
-    backgroundSelect.addEventListener('change', (e) => {
-      setBackground(e.target.value);
-    });
-
-    populateBackgrounds();
-
-    // Background music toggle - simple demo: plays/pauses an audio element
-    let bgAudio = null;
-    function createBgAudio() {
-      bgAudio = document.createElement('audio');
-      bgAudio.src = 'https://cdn.pixabay.com/download/audio/2022/03/15/audio_8b82253f32.mp3?filename=ambient-background-10305.mp3'; // Free ambient background music
-      bgAudio.loop = true;
-      bgAudio.volume = 0.2;
-      document.body.appendChild(bgAudio);
-    }
-    toggleBgMusic.addEventListener('change', () => {
-      if(toggleBgMusic.checked) {
-        if(!bgAudio) createBgAudio();
-        bgAudio.play();
-        localStorage.setItem('pcsb_bgMusic', 'true');
-      } else {
-        if(bgAudio) bgAudio.pause();
-        localStorage.setItem('pcsb_bgMusic', 'false');
-      }
-    });
-    // Load bg music setting
-    if(localStorage.getItem('pcsb_bgMusic') === 'true') {
-      toggleBgMusic.checked = true;
-      createBgAudio();
-      bgAudio.play();
-    }
-
-    // Tooltips toggle - demo by enabling/disabling title attributes on buttons
-    toggleTooltips.addEventListener('change', () => {
-      if(toggleTooltips.checked) {
-        discordBtn.title = "Join our community Discord server";
-        downloadBtn.title = downloadBtn.classList.contains('disabled') ? "Coming soon" : "Download PC Sandbox";
-        localStorage.setItem('pcsb_tooltips', 'true');
-      } else {
-        discordBtn.removeAttribute('title');
-        downloadBtn.removeAttribute('title');
-        localStorage.setItem('pcsb_tooltips', 'false');
-      }
-    });
-    if(localStorage.getItem('pcsb_tooltips') === 'true') {
-      toggleTooltips.checked = true;
-      discordBtn.title = "Join our community Discord server";
-      downloadBtn.title = downloadBtn.classList.contains('disabled') ? "Coming soon" : "Download PC Sandbox";
-    }
-
-    // Beta features enablement
-    enableBetaBtn.addEventListener('click', () => {
-      const inputKey = betaKeyInput.value.trim();
-      if(inputKey === betaKey) {
-        localStorage.setItem('pcsb_beta', 'enabled');
-        betaStatus.style.display = 'block';
-        betaKeyInput.value = '';
-      } else {
-        alert('Incorrect beta key. Please try again.');
-      }
-    });
-    // On load, check beta
-    if(localStorage.getItem('pcsb_beta') === 'enabled') {
-      betaStatus.style.display = 'block';
-    }
-
-    // Beta download link dummy URL
-    betaDownloadLink.href = "beta_builds/pc_sandbox_beta.zip";
-
-    // Accessibility improvements
-    // Keyboard navigation is inherent for <a>, <input>, <select>, <button>
-
-  </script>
-
 </body>
 </html>
