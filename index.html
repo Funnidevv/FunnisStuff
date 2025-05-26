@@ -70,57 +70,55 @@
       box-shadow: 0 0 8px #5865f2;
     }
 
-    /* MAIN HERO */
+    /* MAIN CONTENT */
     main {
       flex-grow: 1;
       max-width: 900px;
       margin: 4rem auto 6rem;
-      text-align: center;
       padding: 0 1rem;
+      text-align: center;
     }
     main h1 {
       font-weight: 700;
-      font-size: 3.8rem;
-      letter-spacing: 2px;
-      margin-bottom: 0.4rem;
+      font-size: 3rem;
+      margin-bottom: 1.2rem;
       color: #5865f2;
       text-shadow: 0 0 10px #5865f2;
     }
-    main p {
+    main p.lead {
       font-weight: 300;
       font-size: 1.3rem;
-      margin-bottom: 3rem;
-      color: #aaa;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.5;
-    }
-    .btn-group {
-      display: flex;
-      justify-content: center;
-      gap: 1.4rem;
-      flex-wrap: wrap;
-    }
-    .btn {
-      background: #5865f2;
-      color: white;
-      padding: 1.2rem 2.6rem;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 1.1rem;
-      box-shadow: 0 6px 12px rgba(88, 101, 242, 0.5);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-      user-select: none;
-      border: none;
-    }
-    .btn:hover {
-      background: #4752c4;
-      box-shadow: 0 8px 18px rgba(71, 82, 196, 0.7);
+      margin-bottom: 2.5rem;
+      color: #ccc;
     }
 
-    /* FOOTER */
+    /* Sneak Peeks */
+    .sneak-peeks {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .sneak-peeks.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .sneak-peeks img {
+      width: 300px;
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(88, 101, 242, 0.5);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .sneak-peeks img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 30px rgba(88, 101, 242, 0.8);
+    }
+
     footer {
       background: #181818;
       text-align: center;
@@ -134,14 +132,10 @@
     /* Responsive */
     @media (max-width: 600px) {
       main h1 {
-        font-size: 2.8rem;
+        font-size: 2.2rem;
       }
-      main p {
-        font-size: 1rem;
-      }
-      .btn {
-        width: 100%;
-        max-width: 320px;
+      .sneak-peeks img {
+        width: 90%;
       }
       nav {
         flex-direction: column;
@@ -161,22 +155,51 @@
       <div class="nav-links">
         <a href="index.html" class="active">Home</a>
         <a href="socials.html">Socials</a>
-        <a href="sneak-peeks.html">Sneak Peeks</a>
       </div>
     </nav>
   </header>
 
   <main>
     <h1>PC Sandbox</h1>
-    <p>Explore, build, and experiment in the ultimate sandbox experience! Join our community and get ready for exciting new features coming soon.</p>
-    <div class="btn-group">
-      <button class="btn" disabled>Download PC Sandbox (SOON)</button>
+    <p class="lead">Explore, build, and experiment in the ultimate sandbox experience!</p>
+    <div class="buttons">
+      <a href="https://discord.gg/W2d7Gb8sgr" target="_blank" rel="noopener">Discord Server</a>
+      <a href="https://www.youtube.com/results?search_query=click+shorts+and+get+addicted%2C+NOW." download>Download PC Sandbox (SOON)</a>
     </div>
+
+    <section class="sneak-peeks" id="sneak-peeks">
+      <h2>Sneak Peeks</h2>
+      <img src="https://cdn.discordapp.com/attachments/1362201864283623506/1376417954329268285/image.png?ex=6835409c&is=6833ef1c&hm=a323b13025e3bf35c3db6192716b330f82d6073f06359193b1bfab3639bbc04b&" alt="Development Build (5/26/25)" />
+      <img src="https://cdn.discordapp.com/attachments/1362201864283623506/1376418418244321368/image.png?ex=6835410b&is=6833ef8b&hm=027511314463ed2250d884ae58140122b52c9aa3f93e619d632471164a8558a7&" alt="Development Build (5/26/25)" />
+      <!-- Add more images or videos here -->
+    </section>
   </main>
 
   <footer>
     &copy; 2025 PC Sandbox. All rights reserved.
   </footer>
+
+  <script>
+    // Fade in .sneak-peeks when scrolled into view
+    document.addEventListener('DOMContentLoaded', () => {
+      const sneakPeeks = document.getElementById('sneak-peeks');
+
+      function onScroll() {
+        const rect = sneakPeeks.getBoundingClientRect();
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        
+        // Trigger fade in when top of sneakPeeks is within bottom 80% of viewport
+        if (rect.top <= windowHeight * 0.8) {
+          sneakPeeks.classList.add('visible');
+          window.removeEventListener('scroll', onScroll);
+        }
+      }
+
+      window.addEventListener('scroll', onScroll);
+      // Also check on load in case it's already in view
+      onScroll();
+    });
+  </script>
 
 </body>
 </html>
