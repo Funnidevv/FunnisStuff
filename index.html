@@ -114,10 +114,15 @@
       align-items: center;
       justify-content: center;
     }
-    .buttons a:hover {
+    .buttons a:hover:not(.disabled) {
       background: #3e50ff;
       box-shadow: 0 8px 30px #3e50ffbb;
       transform: scale(1.07);
+    }
+    .buttons a.disabled {
+      pointer-events: none;
+      opacity: 0.5;
+      cursor: default;
     }
 
     .sneak-peeks-container {
@@ -248,7 +253,7 @@
 
     <div class="buttons">
       <a href="https://discord.gg/W2d7Gb8sgr" target="_blank" rel="noopener" aria-label="Join our Discord Server" id="discordBtn">Discord Server</a>
-      <a href="#" download aria-label="Download PC Sandbox - coming soon" id="downloadBtn">Download PC Sandbox (SOON)</a>
+      <a href="#" download aria-label="Download PC Sandbox - coming soon" id="downloadBtn" class="disabled" title="Coming soon">Download PC Sandbox (SOON)</a>
     </div>
 
     <section class="sneak-peeks-container" aria-label="Sneak Peeks">
@@ -298,10 +303,14 @@
     const downloadBtn = document.getElementById('downloadBtn');
     const sneakTitle = document.getElementById('sneakTitle');
 
+    // Control download availability here:
+    const canDownload = false; // Set to true when download is ready
+
     // Load saved language or default to English
     let currentLang = localStorage.getItem('pcSandboxLanguage') || 'en';
     languageSelect.value = currentLang;
     updateLanguage(currentLang);
+    updateDownloadButton();
 
     languageSelect.addEventListener('change', () => {
       currentLang = languageSelect.value;
@@ -318,6 +327,22 @@
       sneakTitle.textContent = t.sneakTitle;
     }
 
+    function updateDownloadButton() {
+      if (canDownload) {
+        downloadBtn.href = 'path/to/PC_Sandbox_Download.exe'; // <-- Replace with actual download URL
+        downloadBtn.classList.remove('disabled');
+        downloadBtn.removeAttribute('aria-disabled');
+        downloadBtn.removeAttribute('title');
+        downloadBtn.removeAttribute('download'); // Only add if you want browser download attr
+      } else {
+        downloadBtn.href = '#';
+        downloadBtn.classList.add('disabled');
+        downloadBtn.setAttribute('aria-disabled', 'true');
+        downloadBtn.setAttribute('title', 'Coming soon');
+        downloadBtn.setAttribute('download', ''); // To hint download attribute but won't work while disabled
+      }
+    }
+
     // Reveal sneak-peek images with animation when visible
     document.addEventListener('DOMContentLoaded', () => {
       const images = document.querySelectorAll('.sneak-peeks img');
@@ -328,9 +353,10 @@
             observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.5 });
+      }, { threshold: 0.2 });
       images.forEach(img => observer.observe(img));
     });
   </script>
+
 </body>
 </html>
