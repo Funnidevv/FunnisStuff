@@ -4,72 +4,175 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PC Sandbox</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
   <style>
-    /* shared styles */
-    body {
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #0f0f0f;
-      color: #f0f0f0;
-      text-align: center;
+      padding: 0;
     }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+      color: #e0e0e0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    a:focus,
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* NAVIGATION */
     header {
-      padding: 2em;
-      background: #1a1a1a;
+      background: #181818;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+      padding: 1.2rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-    nav a {
-      color: #5865F2;
-      text-decoration: none;
-      margin: 0 1em;
-      font-weight: bold;
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
     }
-    nav a:hover {
-      color: #4752c4;
+    .logo {
+      font-weight: 600;
+      font-size: 1.6rem;
+      letter-spacing: 1.5px;
+      color: #5865f2;
     }
-    h1 {
-      font-size: 3em;
-      margin-bottom: 0.3em;
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
     }
-    p {
-      font-size: 1.2em;
-      margin-bottom: 2em;
+    .nav-links a {
+      font-weight: 500;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      color: #c0c0c0;
     }
-    .buttons a {
-      display: inline-block;
-      margin: 1em;
-      padding: 1em 2em;
-      background: #5865F2;
+    .nav-links a:hover,
+    .nav-links a.active {
+      background-color: #5865f2;
       color: white;
-      text-decoration: none;
-      border-radius: 10px;
-      transition: 0.3s;
+      box-shadow: 0 0 8px #5865f2;
     }
-    .buttons a:hover {
+
+    /* MAIN HERO */
+    main {
+      flex-grow: 1;
+      max-width: 900px;
+      margin: 4rem auto 6rem;
+      text-align: center;
+      padding: 0 1rem;
+    }
+    main h1 {
+      font-weight: 700;
+      font-size: 3.8rem;
+      letter-spacing: 2px;
+      margin-bottom: 0.4rem;
+      color: #5865f2;
+      text-shadow: 0 0 10px #5865f2;
+    }
+    main p {
+      font-weight: 300;
+      font-size: 1.3rem;
+      margin-bottom: 3rem;
+      color: #aaa;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
+    }
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 1.4rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      background: #5865f2;
+      color: white;
+      padding: 1.2rem 2.6rem;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      box-shadow: 0 6px 12px rgba(88, 101, 242, 0.5);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      user-select: none;
+      border: none;
+    }
+    .btn:hover {
       background: #4752c4;
+      box-shadow: 0 8px 18px rgba(71, 82, 196, 0.7);
     }
+
+    /* FOOTER */
     footer {
-      background: #1a1a1a;
-      padding: 1em;
-      font-size: 0.9em;
-      color: #888;
-      margin-top: 4em;
+      background: #181818;
+      text-align: center;
+      padding: 1rem 2rem;
+      font-weight: 300;
+      font-size: 0.9rem;
+      color: #666;
+      box-shadow: inset 0 1px 2px rgba(255,255,255,0.05);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      main h1 {
+        font-size: 2.8rem;
+      }
+      main p {
+        font-size: 1rem;
+      }
+      .btn {
+        width: 100%;
+        max-width: 320px;
+      }
+      nav {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .nav-links {
+        gap: 1rem;
+      }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>PC Sandbox</h1>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="socials.html">Socials</a>
-      <a href="sneak-peeks.html">Sneak Peeks</a>
+      <div class="logo">PC Sandbox</div>
+      <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="socials.html">Socials</a>
+        <a href="sneak-peeks.html">Sneak Peeks</a>
+      </div>
     </nav>
-    <p>Explore, build, and experiment in the ultimate sandbox experience!</p>
-    <div class="buttons">
-      <a href="https://www.youtube.com/results?search_query=click+shorts+and+get+addicted%2C+NOW." download>Download PC Sandbox (SOON)</a>
-    </div>
   </header>
+
+  <main>
+    <h1>PC Sandbox</h1>
+    <p>Explore, build, and experiment in the ultimate sandbox experience! Join our community and get ready for exciting new features coming soon.</p>
+    <div class="btn-group">
+      <button class="btn" disabled>Download PC Sandbox (SOON)</button>
+    </div>
+  </main>
 
   <footer>
     &copy; 2025 PC Sandbox. All rights reserved.
