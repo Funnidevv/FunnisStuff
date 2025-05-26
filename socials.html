@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Maintenance - PC Sandbox</title>
+  <title>Site Maintenance</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
   <style>
+    /* Reset */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -13,38 +14,128 @@
     }
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
-      color: #e0e0e0;
+      background: linear-gradient(135deg, #0f1117 0%, #181c27 100%);
+      color: #d0d4ff;
+      min-height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       text-align: center;
-      height: 100vh;
-      padding: 2rem;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding: 1rem;
+      user-select: none;
+      animation: fadeIn 1s ease forwards;
+      opacity: 0;
     }
-    .message-box {
-      max-width: 600px;
-      padding: 3rem;
-      border-radius: 16px;
-      background-color: #181818;
-      box-shadow: 0 6px 24px rgba(88, 101, 242, 0.4);
+    main {
+      max-width: 520px;
+      padding: 3rem 4rem;
+      background: linear-gradient(145deg, #1e2240, #15182f);
+      border-radius: 24px;
+      box-shadow:
+        0 0 40px #5a70ffcc,
+        inset 0 0 20px #3a47a5cc;
+      border: 1px solid #3a47a5;
+      user-select: none;
     }
     h1 {
-      font-size: 2.5rem;
-      color: #5865f2;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 10px #5865f2;
+      font-weight: 700;
+      font-size: 4rem;
+      margin-bottom: 0.8rem;
+      color: #7c8bff;
+      text-shadow:
+        0 0 12px #7c8bff,
+        0 0 20px #5a70ffcc;
+      position: relative;
+      animation: glowPulse 2.5s ease-in-out infinite;
+      user-select: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    /* Underline accent */
+    h1::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 4px;
+      margin: 1rem auto 0;
+      background: linear-gradient(90deg, #5a70ff, #7c8bff);
+      border-radius: 2px;
+      box-shadow: 0 0 10px #7c8bffaa;
+    }
+    h1 .emoji {
+      font-size: 1.8rem;
+      user-select: none;
     }
     p {
-      font-size: 1.2rem;
-      color: #ccc;
+      font-weight: 300;
+      font-size: 1.6rem;
+      color: #abb2ffcc;
+      line-height: 1.7;
+      margin-top: 2.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.8rem;
+      user-select: none;
+    }
+    p .emoji {
+      font-size: 1.5rem;
+      user-select: none;
+    }
+    /* Pulsating dot replaced with hourglass emoji */
+    p::before {
+      content: "";
+      display: none; /* hidden because replaced by emoji */
+    }
+
+    /* Animations */
+    @keyframes glowPulse {
+      0%, 100% {
+        text-shadow:
+          0 0 12px #7c8bff,
+          0 0 20px #5a70ffcc;
+      }
+      50% {
+        text-shadow:
+          0 0 20px #7c8bff,
+          0 0 30px #5a70ffdd,
+          0 0 40px #5a70ffee;
+      }
+    }
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 520px) {
+      main {
+        padding: 2rem 2.5rem;
+      }
+      h1 {
+        font-size: 3rem;
+      }
+      h1 .emoji {
+        font-size: 1.5rem;
+      }
+      p {
+        font-size: 1.3rem;
+        margin-top: 2rem;
+      }
+      p .emoji {
+        font-size: 1.2rem;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="message-box">
-    <h1>Site Down For Maintenance</h1>
-    <p>We're currently updating this piece of the side for PC Sandbox and will be back online shortly. Thank you for your patience!</p>
-  </div>
+  <main role="main" aria-live="polite">
+    <h1><span class="emoji" aria-hidden="true">🛠️</span> Site is down for Maintenance</h1>
+    <p><span class="emoji" aria-hidden="true">⏳</span> Please Check Back Later.</p>
+  </main>
 </body>
 </html>
