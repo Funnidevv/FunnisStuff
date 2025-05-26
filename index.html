@@ -4,90 +4,333 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PC Sandbox</title>
-  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --bg: #0f0f12;
-      --text: #f0f0f0;
-      --accent: #7c3aed;
-      --card-bg: #1a1a1f;
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
     body {
-      font-family: 'Urbanist', sans-serif;
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f1117 0%, #181c27 100%);
+      color: #d0d4ff;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
-      transition: background 0.3s, color 0.3s;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
-    header, footer {
-      background: var(--card-bg);
-      padding: 1rem 2rem;
-      text-align: center;
+    a {
+      color: #8ba0ff;
+      text-decoration: none;
+      transition: color 0.3s ease;
     }
+    a:hover, a:focus {
+      color: #5a70ff;
+      text-decoration: underline;
+      outline: none;
+    }
+
     header {
+      background: #1c2031;
+      box-shadow: 0 0 20px #5a70ff88;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
     .logo {
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: var(--accent);
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: #7c8bff;
+      text-shadow: 0 0 12px #7c8bff;
+      user-select: none;
     }
+
     nav a {
-      margin-left: 1rem;
-      color: var(--text);
-      text-decoration: none;
       font-weight: 600;
+      font-size: 1rem;
+      margin-left: 1.5rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
+      box-shadow: 0 0 12px transparent;
+      user-select: none;
     }
-    nav a:hover {
-      text-decoration: underline;
+    nav a.active, nav a:focus {
+      background: #5a70ff;
+      box-shadow: 0 0 12px #5a70ff;
+      color: #fff;
+      outline: none;
     }
-    .section {
-      padding: 2rem;
+
+    main {
+      flex-grow: 1;
       max-width: 960px;
-      margin: auto;
+      margin: 4rem auto 6rem;
+      padding: 0 1rem;
       text-align: center;
     }
+
+    main h1 {
+      font-weight: 700;
+      font-size: 3.2rem;
+      margin-bottom: 1rem;
+      color: #7c8bff;
+      text-shadow: 0 0 15px #7c8bff;
+      user-select: none;
+    }
+    .lead {
+      font-weight: 300;
+      font-size: 1.25rem;
+      margin-bottom: 3rem;
+      color: #abb2ffcc;
+      line-height: 1.5;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.3rem;
+      margin-bottom: 5rem;
+    }
     .buttons a {
-      background: var(--accent);
-      padding: 0.8rem 1.4rem;
-      color: white;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 600;
-      margin: 0.5rem;
-      display: inline-block;
-      transition: background 0.3s ease;
+      background: #5a70ff;
+      color: #fff;
+      padding: 1.1rem 2rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      box-shadow: 0 6px 20px #5a70ff88;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
     .buttons a:hover {
-      background: #5a21d4;
+      background: #3e50ff;
+      box-shadow: 0 8px 30px #3e50ffbb;
+      transform: scale(1.07);
+    }
+
+    .sneak-peeks-container {
+      margin-top: 2rem;
+      text-align: left;
+      max-width: 960px;
+      margin-left: auto;
+      margin-right: auto;
+      user-select: none;
+    }
+    .sneak-peeks-container h2 {
+      font-weight: 700;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #7c8bff;
+      text-shadow: 0 0 12px #7c8bff;
+    }
+    .sneak-peeks {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .sneak-peeks img {
+      width: 320px;
+      max-width: 100%;
+      border-radius: 14px;
+      box-shadow: 0 8px 25px #5a70ff88;
+      cursor: pointer;
+      opacity: 0;
+      transform: scale(0.85);
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s ease;
+      user-select: none;
+    }
+    .sneak-peeks img.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .sneak-peeks img:hover {
+      transform: scale(1.08);
+      box-shadow: 0 12px 40px #3e50ffcc;
+    }
+
+    footer {
+      background: #1c2031;
+      text-align: center;
+      padding: 1rem 2rem;
+      font-weight: 300;
+      font-size: 0.9rem;
+      color: #99aaffcc;
+      box-shadow: inset 0 1px 3px #00000080;
+      user-select: none;
+    }
+
+    /* Language selector styling */
+    .lang-select-container {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #abb2ffcc;
+      font-weight: 500;
+      font-size: 0.95rem;
+      user-select: none;
+    }
+    select#languageSelect {
+      background: #2a2f48;
+      border: none;
+      border-radius: 6px;
+      color: #abb2ff;
+      padding: 0.3rem 0.7rem;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      user-select: none;
+    }
+    select#languageSelect:hover, select#languageSelect:focus {
+      background: #3e50ff;
+      color: white;
+      outline: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      main h1 {
+        font-size: 2.4rem;
+      }
+      .buttons a {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
+      .sneak-peeks {
+        flex-direction: column;
+        align-items: center;
+      }
+      .sneak-peeks img {
+        width: 90vw;
+      }
+      nav a {
+        margin-left: 1rem;
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
 <body>
+
   <header>
     <div class="logo">PC Sandbox</div>
     <nav>
-      <a href="index.html" aria-current="page">Home</a>
-      <a href="settings.html">Settings</a>
+      <a href="index.html" class="active" aria-current="page" id="homeTab">Home</a>
+      <a href="settings.html" id="settingsTab">Settings</a>
     </nav>
+    <div class="lang-select-container">
+      <label for="languageSelect" id="languageLabel">Language:</label>
+      <select id="languageSelect" aria-label="Select Language">
+        <option value="en">English</option>
+        <option value="es">Español</option>
+        <option value="fr">Français</option>
+      </select>
+    </div>
   </header>
 
-  <section class="section">
-    <h1>Welcome to PC Sandbox</h1>
-    <p class="lead">Explore, build, and experiment in the ultimate sandbox experience.</p>
+  <main>
+    <h1 id="mainTitle">PC Sandbox</h1>
+    <p class="lead" id="leadText">Explore, build, and experiment in the ultimate sandbox experience!</p>
+
     <div class="buttons">
-      <a href="https://discord.gg/W2d7Gb8sgr" target="_blank" rel="noopener">Join Discord</a>
-      <a href="#" aria-disabled="true" style="opacity:0.6;pointer-events:none;">Download (Coming Soon)</a>
+      <a href="https://discord.gg/W2d7Gb8sgr" target="_blank" rel="noopener" aria-label="Join our Discord Server" id="discordBtn">Discord Server</a>
+      <a href="#" download aria-label="Download PC Sandbox - coming soon" id="downloadBtn">Download PC Sandbox (SOON)</a>
     </div>
-  </section>
+
+    <section class="sneak-peeks-container" aria-label="Sneak Peeks">
+      <h2 id="sneakTitle">Sneak Peeks</h2>
+      <div class="sneak-peeks" id="sneak-peeks">
+        <img src="https://cdn.discordapp.com/attachments/1362201864283623506/1376417954329268285/image.png?ex=6835409c&is=6833ef1c&hm=a323b13025e3bf35c3db6192716b330f82d6073f06359193b1bfab3639bbc04b&" alt="Development Build Screenshot - May 26" />
+        <img src="https://cdn.discordapp.com/attachments/1362201864283623506/1376418418244321368/image.png?ex=6835410b&is=6833ef8b&hm=027511314463ed2250d884ae58140122b52c9aa3f93e619d632471164a8558a7&" alt="Another Screenshot from May 26 Build" />
+      </div>
+    </section>
+  </main>
 
   <footer>
     &copy; 2025 PC Sandbox. All rights reserved.
   </footer>
+
+  <script>
+    // Language translations
+    const texts = {
+      en: {
+        mainTitle: "PC Sandbox",
+        leadText: "Explore, build, and experiment in the ultimate sandbox experience!",
+        discordBtn: "Discord Server",
+        downloadBtn: "Download PC Sandbox (SOON)",
+        sneakTitle: "Sneak Peeks"
+      },
+      es: {
+        mainTitle: "PC Sandbox",
+        leadText: "¡Explora, construye y experimenta en la experiencia definitiva de sandbox!",
+        discordBtn: "Servidor de Discord",
+        downloadBtn: "Descargar PC Sandbox (PRÓXIMAMENTE)",
+        sneakTitle: "Avances"
+      },
+      fr: {
+        mainTitle: "PC Sandbox",
+        leadText: "Explorez, construisez et expérimentez dans l'expérience ultime du bac à sable !",
+        discordBtn: "Serveur Discord",
+        downloadBtn: "Télécharger PC Sandbox (BIENTÔT)",
+        sneakTitle: "Aperçus"
+      }
+    };
+
+    // Elements
+    const languageSelect = document.getElementById('languageSelect');
+    const mainTitle = document.getElementById('mainTitle');
+    const leadText = document.getElementById('leadText');
+    const discordBtn = document.getElementById('discordBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const sneakTitle = document.getElementById('sneakTitle');
+
+    // Load saved language or default to English
+    let currentLang = localStorage.getItem('pcSandboxLanguage') || 'en';
+    languageSelect.value = currentLang;
+    updateLanguage(currentLang);
+
+    languageSelect.addEventListener('change', () => {
+      currentLang = languageSelect.value;
+      updateLanguage(currentLang);
+      localStorage.setItem('pcSandboxLanguage', currentLang);
+    });
+
+    function updateLanguage(lang) {
+      const t = texts[lang];
+      mainTitle.textContent = t.mainTitle;
+      leadText.textContent = t.leadText;
+      discordBtn.textContent = t.discordBtn;
+      downloadBtn.textContent = t.downloadBtn;
+      sneakTitle.textContent = t.sneakTitle;
+    }
+
+    // Reveal sneak-peek images with animation when visible
+    document.addEventListener('DOMContentLoaded', () => {
+      const images = document.querySelectorAll('.sneak-peeks img');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      images.forEach(img => observer.observe(img));
+    });
+  </script>
 </body>
 </html>
