@@ -4,233 +4,159 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PC Sandbox</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    /* Reset and base styles */
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --accent: #5865f2;
+      --card-bg: #f4f4f4;
+    }
+    [data-theme="dark"] {
+      --bg: #121212;
+      --text: #e0e0e0;
+      --accent: #5865f2;
+      --card-bg: #1e1e1e;
+    }
+
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+      transition: background 0.3s, color 0.3s;
     }
     body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #0e0e0e, #1a1a1a);
-      color: #e0e0e0;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
       display: flex;
       flex-direction: column;
       min-height: 100vh;
-      overflow-x: hidden;
     }
-    a {
-      color: inherit;
-      text-decoration: none;
-      transition: all 0.2s ease;
-    }
-    a:hover, a:focus {
-      text-decoration: underline;
-    }
-
-    /* Header styles */
     header {
-      background: rgba(18, 18, 18, 0.8);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
-      padding: 1.5rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(10px);
-    }
-    nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      max-width: 1200px;
-      margin: auto;
+      padding: 1rem 2rem;
+      background: var(--card-bg);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
     .logo {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #5865f2;
-      text-shadow: 0 0 10px #5865f2;
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: var(--accent);
+    }
+    .toggle {
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 6px;
+      background: var(--accent);
+      color: white;
+      font-weight: 600;
     }
 
-    /* Main content styles */
     main {
-      max-width: 960px;
-      margin: 4rem auto;
-      padding: 0 1rem;
+      flex: 1;
+      padding: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
       text-align: center;
     }
-    main h1 {
+    h1 {
       font-size: 3rem;
-      color: #5865f2;
       margin-bottom: 1rem;
-      text-shadow: 0 0 12px #5865f2;
+      color: var(--accent);
     }
     .lead {
-      font-size: 1.3rem;
-      color: #bbb;
-      margin-bottom: 2.5rem;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: var(--text);
     }
-
-    /* Button styles */
     .buttons {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 1.2rem;
+      gap: 1rem;
+      margin-bottom: 3rem;
     }
     .buttons a {
-      background: rgba(88, 101, 242, 0.2);
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      background: var(--accent);
       color: white;
-      padding: 1rem 1.6rem;
-      border-radius: 10px;
+      text-decoration: none;
       font-weight: 600;
-      box-shadow: 0 6px 20px rgba(88, 101, 242, 0.5);
-      transition: transform 0.3s ease, background 0.3s ease;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: transform 0.2s;
     }
     .buttons a:hover {
-      background: rgba(88, 101, 242, 0.4);
-      transform: scale(1.08);
-    }
-
-    /* Sneak peeks section */
-    .sneak-peeks-container h2 {
-      margin-top: 3rem;
-      font-size: 2rem;
-      color: #5865f2;
-      text-shadow: 0 0 8px #5865f2;
-    }
-    .sneak-peeks {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-    .sneak-peeks img {
-      width: 300px;
-      max-width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(88, 101, 242, 0.5);
-      transition: transform 0.6s ease, opacity 0.6s ease;
-      opacity: 0;
-      transform: scale(0.85);
-      margin: 1rem;
-    }
-    .sneak-peeks img.visible {
-      opacity: 1;
-      transform: scale(1);
-    }
-    .sneak-peeks img:hover {
       transform: scale(1.05);
     }
 
-    /* Footer styles */
-    footer {
-      background: rgba(17, 17, 17, 0.8);
-      padding: 1rem;
-      text-align: center;
-      color: #777;
-      font-size: 0.9rem;
-      margin-top: auto;
-      backdrop-filter: blur(10px);
+    .sneak-peeks {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    .sneak-peeks img {
+      width: 100%;
+      border-radius: 12px;
+      background: var(--card-bg);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .sneak-peeks img:hover {
+      transform: scale(1.03);
     }
 
-    /* Responsive styles */
-    @media (max-width: 600px) {
-      main h1 {
-        font-size: 2.2rem;
-      }
-      .buttons a {
-        width: 100%;
-        text-align: center;
-      }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: var(--card-bg);
+      font-size: 0.9rem;
+      color: var(--text);
     }
   </style>
 </head>
-<body>
+<body data-theme="light">
+  <header>
+    <div class="logo">PC Sandbox</div>
+    <button class="toggle" onclick="toggleTheme()">Toggle Dark Mode</button>
+  </header>
 
-  <!-- Maintenance Mode UI -->
-  <div id="maintenance-ui" style="display:none;">
-    <header>
-      <nav><div class="logo">PC Sandbox</div></nav>
-    </header>
-    <main>
-      <h1>🚧 Down for Maintenance</h1>
-      <p class="lead">We're updating the site.<br>Check back later!</p>
-      <div class="buttons">
-        <a href="https://discord.gg/W2d7Gb8sgr" target="_blank">Join our Discord</a>
-      </div>
-    </main>
-    <footer>&copy; 2025 PC Sandbox. All rights reserved.</footer>
-  </div>
+  <main>
+    <h1>PC Sandbox</h1>
+    <p class="lead">Explore, build, and experiment in the ultimate sandbox experience.</p>
+    <div class="buttons">
+      <a href="https://discord.gg/W2d7Gb8sgr" target="_blank">Discord</a>
+      <a href="#">Download (Coming Soon)</a>
+    </div>
 
-  <!-- Full Site UI -->
-  <div id="full-site" style="display:none;">
-    <header>
-      <nav>
-        <div class="logo">PC Sandbox</div>
-        <a href="index.html">Home</a>
-      </nav>
-    </header>
-    <main>
-      <h1>PC Sandbox</h1>
-      <p class="lead">Explore, build, and experiment in the ultimate sandbox experience!</p>
-      <div class="buttons">
-        <a href="https://discord.gg/W2d7Gb8sgr" target="_blank">Discord Server</a>
-        <a href="#" download>Download PC Sandbox (SOON)</a>
-      </div>
+    <section class="sneak-peeks">
+      <img src="https://cdn.discordapp.com/attachments/1362201864283623506/1376417954329268285/image.png" alt="Screenshot 1">
+      <img src="https://cdn.discordapp.com/attachments/1362201864283623506/1376418418244321368/image.png" alt="Screenshot 2">
+    </section>
+  </main>
 
-      <section class="sneak-peeks-container">
-        <h2>Sneak Peeks</h2>
-        <div class="sneak-peeks" id="sneak-peeks">
-          <img src="https://cdn.discordapp.com/attachments/1362201864283623506/1376417954329268285/image.png" alt="Screenshot 1" />
-          <img src="https://cdn.discordapp.com/attachments/1362201864283623506/1376418418244321368/image.png" alt="Screenshot 2" />
-        </div>
-      </section>
-    </main>
-    <footer>&copy; 2025 PC Sandbox. All rights reserved.</footer>
-  </div>
+  <footer>
+    &copy; 2025 PC Sandbox. All rights reserved.
+  </footer>
 
-  <!-- UI Sounds -->
-  <audio id="hover-sound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_eb213b1d3a.mp3?filename=click-124467.mp3" preload="auto"></audio>
-  <audio id="click-sound" src="https://cdn.pixabay.com/download/audio/2021/09/06/audio_bdfd78b1b8.mp3?filename=button-click-124466.mp3" preload="auto"></audio>
+  <audio id="hoverSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_e0981791c3.mp3" preload="auto"></audio>
+  <audio id="clickSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_d1e56d92e7.mp3" preload="auto"></audio>
 
   <script>
-    const isDown = false;
+    function toggleTheme() {
+      const body = document.body;
+      const theme = body.getAttribute('data-theme');
+      body.setAttribute('data-theme', theme === 'light' ? 'dark' : 'light');
+    }
 
-    const hoverSound = document.getElementById('hover-sound');
-    const clickSound = document.getElementById('click-sound');
-
-    const playHover = () => { hoverSound.currentTime = 0; hoverSound.play(); };
-    const playClick = () => { clickSound.currentTime = 0; clickSound.play(); };
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const buttons = document.querySelectorAll('.buttons a');
-      buttons.forEach(btn => {
-        btn.addEventListener('mouseenter', playHover);
-        btn.addEventListener('click', playClick);
-      });
-
-      if (isDown) {
-        document.getElementById('maintenance-ui').style.display = 'block';
-      } else {
-        document.getElementById('full-site').style.display = 'block';
-
-        const images = document.querySelectorAll('.sneak-peeks img');
-        const observer = new IntersectionObserver(entries => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.5 });
-        images.forEach(img => observer.observe(img));
-      }
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => document.getElementById('hoverSound').play());
+      el.addEventListener('click', () => document.getElementById('clickSound').play());
     });
   </script>
 </body>
