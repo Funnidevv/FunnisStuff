@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PC Sandbox</title>
+  <title>Maintenance - PC Sandbox</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
   <style>
     * {
@@ -15,247 +15,36 @@
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
       color: #e0e0e0;
-      min-height: 150vh;
-      display: flex;
-      flex-direction: column;
-    }
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-    a:hover, a:focus {
-      text-decoration: underline;
-    }
-
-    header {
-      background: #181818;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
-      padding: 1.2rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    nav {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      max-width: 1200px;
-      margin: 0 auto;
-      flex-wrap: wrap;
-    }
-    .logo {
-      font-weight: 600;
-      font-size: 1.6rem;
-      letter-spacing: 1.5px;
-      color: #5865f2;
-      text-shadow: 0 0 8px #5865f2;
-    }
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-      margin-top: 0.5rem;
-    }
-    .nav-links a {
-      font-weight: 500;
-      padding: 0.4rem 0.8rem;
-      border-radius: 6px;
-      color: #c0c0c0;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    .nav-links a:hover,
-    .nav-links a.active {
-      background-color: #5865f2;
-      color: white;
-      box-shadow: 0 0 8px #5865f2;
-    }
-
-    main {
-      flex-grow: 1;
-      max-width: 900px;
-      margin: 4rem auto 6rem;
-      padding: 0 1rem;
+      justify-content: center;
       text-align: center;
+      height: 100vh;
+      padding: 2rem;
     }
-    main h1 {
-      font-weight: 700;
-      font-size: 3rem;
-      margin-bottom: 1.2rem;
+    .message-box {
+      max-width: 600px;
+      padding: 3rem;
+      border-radius: 16px;
+      background-color: #181818;
+      box-shadow: 0 6px 24px rgba(88, 101, 242, 0.4);
+    }
+    h1 {
+      font-size: 2.5rem;
       color: #5865f2;
+      margin-bottom: 1rem;
       text-shadow: 0 0 10px #5865f2;
     }
-    main p.lead {
-      font-weight: 300;
-      font-size: 1.3rem;
-      margin-bottom: 2.5rem;
+    p {
+      font-size: 1.2rem;
       color: #ccc;
-    }
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 4rem;
-    }
-    .buttons a {
-      background: #5865f2;
-      color: white;
-      padding: 1rem 1.5rem;
-      border-radius: 8px;
-      font-weight: 600;
-      box-shadow: 0 4px 10px rgba(88, 101, 242, 0.5);
-      transition: background 0.3s ease, transform 0.3s ease;
-    }
-    .buttons a:hover {
-      background: #4752c4;
-      transform: scale(1.05);
-    }
-
-    .sneak-peeks-container {
-      margin-top: 10rem;
-    }
-    .sneak-peeks-container h2 {
-      font-size: 2rem;
-      color: #fff;
-      margin-bottom: 1.5rem;
-    }
-    .sneak-peeks {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-    }
-    .sneak-peeks img {
-      width: 300px;
-      max-width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(88, 101, 242, 0.5);
-      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s ease;
-      cursor: pointer;
-      opacity: 0;
-      transform: scale(0.8);
-    }
-    .sneak-peeks img.visible {
-      opacity: 1;
-      transform: scale(1);
-    }
-    .sneak-peeks img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 30px rgba(88, 101, 242, 0.8);
-    }
-
-    .social-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-top: 6rem;
-    }
-    .social-links a {
-      flex: 1 1 140px;
-      max-width: 180px;
-      background: #5865f2;
-      color: white;
-      padding: 1.1rem 1.5rem;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 1.1rem;
-      box-shadow: 0 6px 12px rgba(88, 101, 242, 0.5);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-      user-select: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .social-links a:hover {
-      background: #4752c4;
-      box-shadow: 0 8px 18px rgba(71, 82, 196, 0.7);
-    }
-
-    footer {
-      background: #181818;
-      text-align: center;
-      padding: 1rem 2rem;
-      font-weight: 300;
-      font-size: 0.9rem;
-      color: #666;
-      box-shadow: inset 0 1px 2px rgba(255,255,255,0.05);
-    }
-
-    @media (max-width: 600px) {
-      main h1 {
-        font-size: 2.2rem;
-      }
-      .sneak-peeks img {
-        width: 90%;
-      }
-      .social-links a {
-        flex: 1 1 100%;
-        max-width: 100%;
-      }
-      nav {
-        flex-direction: column;
-        gap: 0.8rem;
-      }
-      .nav-links {
-        gap: 1rem;
-      }
     }
   </style>
 </head>
 <body>
-
-  <header>
-    <nav>
-      <div class="logo">PC Sandbox</div>
-      <section class="nav-links" aria-label="Main navigation">
-        <a href="index.html" class="active" aria-current="page">Home</a>
-        <a href="socials.html">Socials</a>
-      </section>
-    </nav>
-  </header>
-
-  <main>
-    <h1>PC Sandbox</h1>
-    <p class="lead">Explore, build, and experiment in the ultimate sandbox experience!</p>
-
-    <div class="buttons">
-      <a href="https://discord.gg/W2d7Gb8sgr" target="_blank" rel="noopener" aria-label="Join our Discord Server">Discord Server</a>
-      <a href="#" download aria-label="Download PC Sandbox - coming soon">Download PC Sandbox (SOON)</a>
-    </div>
-
-    <section class="sneak-peeks-container">
-      <h2>Sneak Peeks</h2>
-      <div class="sneak-peeks" id="sneak-peeks">
-        <img src="https://cdn.discordapp.com/attachments/1362201864283623506/1376417954329268285/image.png" alt="Development Build Screenshot - May 26" />
-        <img src="https://cdn.discordapp.com/attachments/1362201864283623506/1376418418244321368/image.png" alt="Another Screenshot from May 26 Build" />
-      </div>
-    </section>
-
-    <section class="social-links" aria-label="Social media links">
-      <h1>Join Us!</h1>
-      <a href="https://discord.gg/W2d7Gb8sgr" target="_blank" rel="noopener noreferrer">Discord Server</a>
-    </section>
-  </main>
-
-  <footer>
-    &copy; 2025 PC Sandbox. All rights reserved.
-  </footer>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const images = document.querySelectorAll('.sneak-peeks img');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.5 });
-
-      images.forEach(img => observer.observe(img));
-    });
-  </script>
-
+  <div class="message-box">
+    <h1>Site Down For Maintenance</h1>
+    <p>We're currently updating this piece of the side for PC Sandbox and will be back online shortly. Thank you for your patience!</p>
+  </div>
 </body>
 </html>
