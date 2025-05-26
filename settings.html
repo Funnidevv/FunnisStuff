@@ -265,17 +265,18 @@
       </button>
       <div id="betaTabContent" class="tester-tab" role="region" aria-live="polite" aria-hidden="true" tabindex="-1">
         <form id="betaTesterForm" novalidate>
-          <label for="betaEmailInput" id="betaEmailLabel">Beta Tester Email:</label>
+          <label for="betaKeyInput" id="betaKeyLabel">Beta Tester Key:</label>
           <input
-            type="email"
-            id="betaEmailInput"
-            placeholder="Enter your email"
+            type="text"
+            id="betaKeyInput"
+            placeholder="Enter your beta tester key"
             required
             aria-required="true"
-            aria-describedby="betaEmailHelp"
+            aria-describedby="betaKeyHelp"
+            autocomplete="off"
           />
-          <small id="betaEmailHelp" style="color:#a0aaff; display:block; margin-bottom: 1rem;">
-            Enter your email to join the beta program.
+          <small id="betaKeyHelp" style="color:#a0aaff; display:block; margin-bottom: 1rem;">
+            Enter your beta tester key to join the beta program.
           </small>
 
           <button type="submit" id="betaSubmitBtn">Submit</button>
@@ -331,26 +332,32 @@
       }
     }
 
-    // Language selection handler
-    function handleLanguageChange(e) {
-      const selectedLang = e.target.value;
-      localStorage.setItem('language', selectedLang);
-      // Optionally, reload page or update UI text here
-      console.log('Language selected:', selectedLang);
-    }
+    // Language selector sync
+    languageSelectMain.addEventListener('change', (e) => {
+      const lang = e.target.value;
+      localStorage.setItem('language', lang);
+      languageSelectHeader.value = lang;
+      // Here you could add actual language switching logic
+    });
 
-    languageSelectMain.addEventListener('change', handleLanguageChange);
     languageSelectHeader.addEventListener('change', (e) => {
-      languageSelectMain.value = e.target.value;
-      handleLanguageChange(e);
+      const lang = e.target.value;
+      localStorage.setItem('language', lang);
+      languageSelectMain.value = lang;
+      // Here you could add actual language switching logic
     });
 
     // Beta tester tab toggle
     toggleBetaTabBtn.addEventListener('click', () => {
-      const isActive = betaTabContent.classList.toggle('active');
-      betaTabContent.setAttribute('aria-hidden', !isActive);
-      toggleBetaTabBtn.setAttribute('aria-expanded', isActive);
-      if (isActive) {
+      const isExpanded = toggleBetaTabBtn.getAttribute('aria-expanded') === 'true';
+      if (isExpanded) {
+        betaTabContent.classList.remove('active');
+        betaTabContent.setAttribute('aria-hidden', 'true');
+        toggleBetaTabBtn.setAttribute('aria-expanded', 'false');
+      } else {
+        betaTabContent.classList.add('active');
+        betaTabContent.setAttribute('aria-hidden', 'false');
+        toggleBetaTabBtn.setAttribute('aria-expanded', 'true');
         betaTabContent.focus();
       }
     });
@@ -358,30 +365,27 @@
     // Beta tester form submit handler
     betaTesterForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const emailInput = document.getElementById('betaEmailInput');
-      const email = emailInput.value.trim();
+      const keyInput = document.getElementById('betaKeyInput');
+      const key = keyInput.value.trim();
 
-      if (!validateEmail(email)) {
+      // The beta tester key to validate against:
+      const validKey = 'R9v$3X!qLp&7Zb@Ws8#FnG2YmCt^4KdJJk!45GgkGkDFPOGDhMSn1%93$xF';
+
+      if (key !== validKey) {
         betaSubmitMessage.style.color = '#ff6b6b';
-        betaSubmitMessage.textContent = 'Please enter a valid email address.';
-        emailInput.focus();
+        betaSubmitMessage.textContent = 'Invalid beta tester key. Please try again.';
+        keyInput.focus();
         return;
       }
 
-      // Simulate beta signup success (e.g. send to server)
+      // Success
       betaSubmitMessage.style.color = '#a0ffa0';
-      betaSubmitMessage.textContent = `Thanks, ${email}! You are signed up for beta testing.`;
+      betaSubmitMessage.textContent = `Thanks! You are signed up for beta testing.`;
 
       // Reset form after success
       betaTesterForm.reset();
     });
-
-    // Email validation helper
-    function validateEmail(email) {
-      // Basic email regex
-      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return re.test(email);
-    }
   </script>
+
 </body>
 </html>
