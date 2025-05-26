@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PC Sandbox Settings</title>
+  <title>Settings - PC Sandbox</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
   <style>
     /* Reset */
@@ -12,22 +12,31 @@
       margin: 0;
       padding: 0;
     }
-
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
-      color: #e0e0e0;
+      background: linear-gradient(135deg, #0f1117 0%, #181c27 100%);
+      color: #d0d4ff;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      padding: 0 1rem 3rem;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      transition: background 0.5s ease, color 0.5s ease;
+    }
+    a {
+      color: #8ba0ff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover, a:focus {
+      color: #5a70ff;
+      text-decoration: underline;
+      outline: none;
     }
 
     header {
-      width: 100%;
-      background: #181818;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+      background: #1c2031;
+      box-shadow: 0 0 20px #5a70ff88;
       padding: 1rem 2rem;
       position: sticky;
       top: 0;
@@ -35,150 +44,176 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
+      transition: background 0.5s ease, box-shadow 0.5s ease;
     }
-
     .logo {
-      font-weight: 600;
-      font-size: 1.6rem;
-      color: #5865f2;
-      text-shadow: 0 0 8px #5865f2;
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: #7c8bff;
+      text-shadow: 0 0 12px #7c8bff;
       user-select: none;
-    }
-
-    nav {
-      display: flex;
-      gap: 1.5rem;
+      transition: color 0.5s ease, text-shadow 0.5s ease;
     }
 
     nav a {
-      color: #ccc;
       font-weight: 600;
-      text-decoration: none;
-      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      margin-left: 1.5rem;
+      padding: 0.3rem 0.6rem;
       border-radius: 6px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      box-shadow: 0 0 6px transparent;
+      box-shadow: 0 0 12px transparent;
+      user-select: none;
+      transition: background 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
     }
-
-    nav a:hover, nav a:focus {
-      background-color: #4752c4;
-      color: white;
-      box-shadow: 0 0 10px #5865f2;
+    nav a.active, nav a:focus {
+      background: #5a70ff;
+      box-shadow: 0 0 12px #5a70ff;
+      color: #fff;
       outline: none;
-    }
-
-    nav a.active {
-      color: #5865f2;
-      box-shadow: 0 0 12px #5865f2;
-      background-color: #2a2a72;
-      pointer-events: none;
     }
 
     main {
-      max-width: 700px;
-      width: 100%;
-      margin-top: 3rem;
-      background: #1f1f1f;
-      padding: 2rem 3rem;
-      border-radius: 14px;
-      box-shadow: 0 8px 20px rgba(88, 101, 242, 0.4);
+      flex-grow: 1;
+      max-width: 720px;
+      margin: 4rem auto 6rem;
+      padding: 0 1rem;
+      user-select: none;
+      transition: color 0.5s ease;
     }
 
-    h1, h2 {
-      color: #5865f2;
-      text-shadow: 0 0 10px #5865f2;
-      margin-bottom: 1.2rem;
+    main h1 {
+      font-weight: 700;
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+      color: #7c8bff;
+      text-shadow: 0 0 15px #7c8bff;
+      transition: color 0.5s ease, text-shadow 0.5s ease;
     }
-
     label {
-      display: block;
-      margin: 1.2rem 0 0.4rem;
       font-weight: 600;
-      color: #ccc;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      display: block;
+      color: #abb2ffcc;
+      transition: color 0.5s ease;
     }
-
-    select, input[type="password"], input[type="text"] {
+    input[type="checkbox"] {
+      transform: scale(1.3);
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    input[type="text"], input[type="password"], select {
       width: 100%;
-      max-width: 100%;
-      padding: 0.7rem 1rem;
-      border-radius: 8px;
-      border: none;
+      padding: 10px 14px;
       font-size: 1rem;
-      background-color: #2a2a72;
-      color: #e0e0e0;
-      box-shadow: inset 0 0 5px #5865f2;
-      transition: background-color 0.3s ease;
+      border-radius: 10px;
+      border: none;
+      background: #1c2031;
+      color: #d0d4ff;
+      box-shadow: inset 0 0 10px #5a70ff44;
+      margin-bottom: 20px;
+      transition: box-shadow 0.3s ease, background 0.5s ease, color 0.5s ease;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      user-select: text;
     }
-
-    select:focus, input:focus {
+    input[type="text"]:focus, input[type="password"]:focus, select:focus {
+      box-shadow: 0 0 12px #5a70ffcc;
       outline: none;
-      background-color: #3b3bd3;
-      box-shadow: 0 0 12px #5865f2;
-      color: white;
+      background: #272c4a;
     }
 
     button {
-      margin-top: 1.5rem;
-      background: #5865f2;
+      background: #5a70ff;
       border: none;
-      padding: 0.85rem 2rem;
-      font-weight: 700;
-      font-size: 1rem;
-      border-radius: 12px;
+      padding: 14px 24px;
       color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 14px;
       cursor: pointer;
-      box-shadow: 0 5px 15px rgba(88, 101, 242, 0.7);
-      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 6px 20px #5a70ff88;
+      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
       user-select: none;
     }
-
-    button:hover, button:focus {
-      background: #4752c4;
-      transform: scale(1.05);
-      outline: none;
-      box-shadow: 0 6px 20px #5865f2;
+    button:hover {
+      background: #3e50ff;
+      box-shadow: 0 8px 30px #3e50ffbb;
+      transform: scale(1.07);
     }
 
-    #tester {
-      margin-top: 3rem;
-      background: #222;
-      padding: 1.5rem 2rem;
-      border-radius: 14px;
-      color: #a0ffa0;
-      box-shadow: 0 6px 25px rgba(160, 255, 160, 0.5);
+    .section {
+      margin-bottom: 3rem;
+    }
+    .section h2 {
+      font-weight: 700;
+      font-size: 1.8rem;
+      margin-bottom: 1.2rem;
+      color: #7c8bff;
+      text-shadow: 0 0 12px #7c8bff;
+      transition: color 0.5s ease, text-shadow 0.5s ease;
+    }
+
+    .beta-tester {
+      margin-top: 1rem;
+    }
+
+    .tester-tab {
+      background: #1c2031;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #5a70ff66;
+      margin-top: 1rem;
+      color: #d0d4ff;
       display: none;
-      max-width: 100%;
-      line-height: 1.5;
+      user-select: text;
+      transition: background 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
+    }
+    .tester-tab.active {
+      display: block;
     }
 
-    #tester ul {
-      margin: 1rem 0 1.5rem 1.3rem;
+    /* Language selector styling */
+    .lang-select-container {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #abb2ffcc;
+      font-weight: 500;
+      font-size: 0.95rem;
+      user-select: none;
+      transition: color 0.5s ease;
     }
-
-    #tester a {
-      color: #90ee90;
+    select#languageSelect {
+      background: #2a2f48;
+      border: none;
+      border-radius: 6px;
+      color: #abb2ff;
+      padding: 0.3rem 0.7rem;
       font-weight: 600;
-      text-decoration: underline;
+      font-size: 1rem;
       cursor: pointer;
-      display: inline-block;
-      margin-top: 0.5rem;
+      transition: background 0.3s ease, color 0.3s ease;
+      user-select: none;
     }
-
-    #tester a:hover, #tester a:focus {
-      color: #c6f7c6;
+    select#languageSelect:hover, select#languageSelect:focus {
+      background: #3e50ff;
+      color: white;
       outline: none;
-      text-shadow: 0 0 10px #90ee90;
     }
 
-    @media (max-width: 600px) {
-      main {
-        padding: 1.5rem 1.5rem;
+    /* Responsive */
+    @media (max-width: 640px) {
+      main h1 {
+        font-size: 2.2rem;
       }
-      nav {
-        justify-content: center;
+      button {
         width: 100%;
-        margin-top: 0.5rem;
+      }
+      nav a {
+        margin-left: 1rem;
+        font-size: 0.9rem;
       }
     }
   </style>
@@ -186,138 +221,332 @@
 <body>
 
   <header>
-    <div class="logo" aria-label="PC Sandbox Logo">PC Sandbox</div>
-    <nav aria-label="Primary navigation">
-      <a href="index.html" class="">Home</a>
-      <a href="settings.html" class="active" aria-current="page">Settings</a>
+    <div class="logo">PC Sandbox</div>
+    <nav>
+      <a href="index.html" id="homeTab">Home</a>
+      <a href="settings.html" class="active" aria-current="page" id="settingsTab">Settings</a>
     </nav>
+    <div class="lang-select-container">
+      <label for="languageSelect" id="languageLabel">Language:</label>
+      <select id="languageSelect" aria-label="Select Language">
+        <option value="en">English</option>
+        <option value="es">Español</option>
+        <option value="fr">Français</option>
+      </select>
+    </div>
   </header>
 
-  <main role="main" aria-labelledby="title">
-    <h1 id="title">Settings</h1>
+  <main>
+    <h1 id="settingsTitle">Settings</h1>
 
-    <label for="languageSelect" id="languageLabel">Language</label>
-    <select id="languageSelect" aria-label="Select Language">
-      <option value="en">English</option>
-      <option value="es">Español</option>
-      <option value="fr">Français</option>
-    </select>
-
-    <label for="betaInput" id="betaLabel">Beta Tester Access Password</label>
-    <input type="password" id="betaInput" aria-describedby="betaHelp" placeholder="Enter your beta password" />
-    <button id="betaButton" aria-live="polite" aria-atomic="true">Unlock Beta Tester Access</button>
-
-    <section id="tester" tabindex="-1" aria-live="polite" aria-atomic="true" role="region" aria-label="Beta Tester Section">
-      <h2 id="testerTitle">Beta Tester Section</h2>
-      <p id="testerMessage">Welcome to the Beta Tester program! Here are the latest sneak peeks and the early download link:</p>
-      <ul>
-        <li id="sneak1">Sneak Peek #1: New immersive environment system.</li>
-        <li id="sneak2">Sneak Peek #2: Experimental physics engine improvements.</li>
-        <li id="sneak3">Sneak Peek #3: Early access to version 0.9.1 download.</li>
-      </ul>
-      <a href="early-download-link.zip" download id="downloadLink" aria-label="Download Early Build">Download Early Build</a>
+    <section class="section" aria-label="General Settings">
+      <h2 id="generalSettingsTitle">General</h2>
+      <label>
+        <input type="checkbox" id="darkModeCheckbox" />
+        <span id="darkModeLabel">Enable Dark Mode</span>
+      </label>
+      <label for="languageSelectMain" id="languageMainLabel" style="margin-top: 15px; display:block;">
+        Choose Language:
+      </label>
+      <select id="languageSelectMain" aria-label="Choose Language for App">
+        <option value="en">English</option>
+        <option value="es">Español</option>
+        <option value="fr">Français</option>
+      </select>
     </section>
+
+    <section class="section" aria-label="Background Color Mode">
+      <h2 id="bgModeTitle">Background Color Mode</h2>
+      <select id="bgModeSelect" aria-label="Select Background Color Mode" style="width: 100%; padding: 10px; font-size: 1rem; border-radius: 10px; border: none; background: #1c2031; color: #d0d4ff; box-shadow: inset 0 0 10px #5a70ff44; font-weight: 600; font-family: 'Poppins', sans-serif; user-select: none;">
+        <option value="default">Default</option>
+        <option value="black">Black</option>
+        <option value="dark">Dark Mode</option>
+        <option value="midnight">Midnight</option>
+        <option value="red">Red</option>
+        <option value="lightpink">Light Pink</option>
+      </select>
+    </section>
+
+    <section class="section beta-tester" aria-label="Beta Tester Access">
+      <h2 id="betaTesterTitle">Beta Tester Access</h2>
+      <label for="betaPassword" id="betaPasswordLabel">Enter Beta Tester Password:</label>
+      <input type="password" id="betaPassword" aria-describedby="betaPasswordHelp" autocomplete="off" />
+      <button id="betaSubmitBtn">Submit</button>
+      <small id="betaPasswordHelp" style="display: block; margin-top: 6px; color: #8899ffcc;">
+        Enter your secure password to unlock the Tester tab.
+      </small>
+    </section>
+
+    <section class="section tester-tab" id="testerTab" aria-label="Tester Section">
+      <h2 id="testerTitle">Tester</h2>
+      <p id="testerInfo">
+        Welcome to the Beta Tester area! Here you can view sneak peeks and download early versions of the game.
+      </p>
+      <a href="https://example.com/early-download" target="_blank" id="earlyDownloadLink" rel="noopener noreferrer">
+        Download Early Version
+      </a>
+    </section>
+
   </main>
 
   <script>
-    const texts = {
+    const translations = {
       en: {
-        title: "Settings",
-        languageLabel: "Language",
-        betaLabel: "Beta Tester Access Password",
-        betaButton: "Unlock Beta Tester Access",
-        testerTitle: "Beta Tester Section",
-        testerMessage: "Welcome to the Beta Tester program! Here are the latest sneak peeks and the early download link:",
-        sneak1: "Sneak Peek #1: New immersive environment system.",
-        sneak2: "Sneak Peek #2: Experimental physics engine improvements.",
-        sneak3: "Sneak Peek #3: Early access to version 0.9.1 download.",
-        downloadLink: "Download Early Build",
-        accessGranted: "Access granted. Welcome, Beta Tester!",
-        accessDenied: "Incorrect password. Access denied."
+        languageLabel: "Language:",
+        settingsTitle: "Settings",
+        generalSettingsTitle: "General",
+        darkModeLabel: "Enable Dark Mode",
+        languageMainLabel: "Choose Language:",
+        betaTesterTitle: "Beta Tester Access",
+        betaPasswordLabel: "Enter Beta Tester Password:",
+        betaPasswordHelp: "Enter your secure password to unlock the Tester tab.",
+        betaSubmitBtn: "Submit",
+        testerTitle: "Tester",
+        testerInfo: "Welcome to the Beta Tester area! Here you can view sneak peeks and download early versions of the game.",
+        earlyDownloadLinkText: "Download Early Version",
+        bgModeTitle: "Background Color Mode",
       },
       es: {
-        title: "Configuración",
-        languageLabel: "Idioma",
-        betaLabel: "Contraseña de acceso para Beta Tester",
-        betaButton: "Desbloquear acceso Beta Tester",
-        testerTitle: "Sección Beta Tester",
-        testerMessage: "¡Bienvenido al programa Beta Tester! Aquí están las últimas vistas previas y el enlace de descarga anticipada:",
-        sneak1: "Vista previa #1: Nuevo sistema de entornos inmersivos.",
-        sneak2: "Vista previa #2: Mejoras experimentales en el motor físico.",
-        sneak3: "Vista previa #3: Acceso anticipado a la versión 0.9.1.",
-        downloadLink: "Descargar versión anticipada",
-        accessGranted: "Acceso concedido. ¡Bienvenido, Beta Tester!",
-        accessDenied: "Contraseña incorrecta. Acceso denegado."
+        languageLabel: "Idioma:",
+        settingsTitle: "Configuración",
+        generalSettingsTitle: "General",
+        darkModeLabel: "Activar modo oscuro",
+        languageMainLabel: "Elige idioma:",
+        betaTesterTitle: "Acceso de Beta Tester",
+        betaPasswordLabel: "Introduce la contraseña de Beta Tester:",
+        betaPasswordHelp: "Introduce tu contraseña segura para desbloquear la pestaña Tester.",
+        betaSubmitBtn: "Enviar",
+        testerTitle: "Tester",
+        testerInfo: "¡Bienvenido a la zona de Beta Tester! Aquí puedes ver adelantos y descargar versiones tempranas del juego.",
+        earlyDownloadLinkText: "Descargar versión temprana",
+        bgModeTitle: "Modo de color de fondo",
       },
       fr: {
-        title: "Paramètres",
-        languageLabel: "Langue",
-        betaLabel: "Mot de passe d'accès Beta Tester",
-        betaButton: "Déverrouiller l'accès Beta Tester",
-        testerTitle: "Section Beta Tester",
-        testerMessage: "Bienvenue au programme Beta Tester ! Voici les dernières avant-premières et le lien de téléchargement anticipé :",
-        sneak1: "Aperçu #1 : Nouveau système d’environnement immersif.",
-        sneak2: "Aperçu #2 : Améliorations expérimentales du moteur physique.",
-        sneak3: "Aperçu #3 : Accès anticipé à la version 0.9.1.",
-        downloadLink: "Télécharger la version anticipée",
-        accessGranted: "Accès accordé. Bienvenue, Beta Tester !",
-        accessDenied: "Mot de passe incorrect. Accès refusé."
+        languageLabel: "Langue :",
+        settingsTitle: "Paramètres",
+        generalSettingsTitle: "Général",
+        darkModeLabel: "Activer le mode sombre",
+        languageMainLabel: "Choisir la langue :",
+        betaTesterTitle: "Accès Beta Tester",
+        betaPasswordLabel: "Entrez le mot de passe Beta Tester :",
+        betaPasswordHelp: "Entrez votre mot de passe sécurisé pour déverrouiller l'onglet Tester.",
+        betaSubmitBtn: "Soumettre",
+        testerTitle: "Tester",
+        testerInfo: "Bienvenue dans la zone Beta Tester ! Ici, vous pouvez voir des aperçus et télécharger les versions anticipées du jeu.",
+        earlyDownloadLinkText: "Télécharger la version anticipée",
+        bgModeTitle: "Mode couleur de fond",
       }
     };
 
-    const password = 'R9v$3X!qLp&7Zb@Ws8#FnG2YmCt^4KdJJk!45GgkGkDFPOGDhMSn1%93$xF';
+    const betaPasswordSecret = "R9v$3X!qLp&7Zb@Ws8#FnG2YmCt^4KdJJk!45GgkGkDFPOGDhMSn1%93$xF";
 
     // Elements
-    const languageSelect = document.getElementById('languageSelect');
-    const title = document.getElementById('title');
+    const languageSelectHeader = document.getElementById('languageSelect');
+    const languageSelectMain = document.getElementById('languageSelectMain');
     const languageLabel = document.getElementById('languageLabel');
-    const betaLabel = document.getElementById('betaLabel');
-    const betaButton = document.getElementById('betaButton');
-    const tester = document.getElementById('tester');
+    const settingsTitle = document.getElementById('settingsTitle');
+    const generalSettingsTitle = document.getElementById('generalSettingsTitle');
+    const darkModeLabel = document.getElementById('darkModeLabel');
+    const languageMainLabel = document.getElementById('languageMainLabel');
+    const betaTesterTitle = document.getElementById('betaTesterTitle');
+    const betaPasswordLabel = document.getElementById('betaPasswordLabel');
+    const betaPasswordHelp = document.getElementById('betaPasswordHelp');
+    const betaSubmitBtn = document.getElementById('betaSubmitBtn');
+    const betaPasswordInput = document.getElementById('betaPassword');
+    const testerTab = document.getElementById('testerTab');
     const testerTitle = document.getElementById('testerTitle');
-    const testerMessage = document.getElementById('testerMessage');
-    const downloadLink = document.getElementById('downloadLink');
-    const sneak1 = document.getElementById('sneak1');
-    const sneak2 = document.getElementById('sneak2');
-    const sneak3 = document.getElementById('sneak3');
+    const testerInfo = document.getElementById('testerInfo');
+    const earlyDownloadLink = document.getElementById('earlyDownloadLink');
+    const darkModeCheckbox = document.getElementById('darkModeCheckbox');
+    const bgModeSelect = document.getElementById('bgModeSelect');
 
-    // Update all UI text based on selected language
-    function updateLanguage(lang) {
-      const t = texts[lang];
-      title.textContent = t.title;
-      languageLabel.textContent = t.languageLabel;
-      betaLabel.textContent = t.betaLabel;
-      betaButton.textContent = t.betaButton;
-      testerTitle.textContent = t.testerTitle;
-      testerMessage.textContent = t.testerMessage;
-      sneak1.textContent = t.sneak1;
-      sneak2.textContent = t.sneak2;
-      sneak3.textContent = t.sneak3;
-      downloadLink.textContent = t.downloadLink;
+    // Sync language selects
+    function syncLanguageSelects(value) {
+      languageSelectHeader.value = value;
+      languageSelectMain.value = value;
     }
 
-    // Load saved language or default to English
-    let currentLang = localStorage.getItem('pcSandboxLanguage') || 'en';
-    languageSelect.value = currentLang;
-    updateLanguage(currentLang);
+    // Load saved language and apply translations
+    function applyLanguage(lang) {
+      if (!translations[lang]) lang = 'en';
+      syncLanguageSelects(lang);
+      const t = translations[lang];
 
-    languageSelect.addEventListener('change', () => {
-      currentLang = languageSelect.value;
-      updateLanguage(currentLang);
-      localStorage.setItem('pcSandboxLanguage', currentLang);
+      languageLabel.textContent = t.languageLabel;
+      settingsTitle.textContent = t.settingsTitle;
+      generalSettingsTitle.textContent = t.generalSettingsTitle;
+      darkModeLabel.textContent = t.darkModeLabel;
+      languageMainLabel.textContent = t.languageMainLabel;
+      betaTesterTitle.textContent = t.betaTesterTitle;
+      betaPasswordLabel.textContent = t.betaPasswordLabel;
+      betaPasswordHelp.textContent = t.betaPasswordHelp;
+      betaSubmitBtn.textContent = t.betaSubmitBtn;
+      testerTitle.textContent = t.testerTitle;
+      testerInfo.textContent = t.testerInfo;
+      earlyDownloadLink.textContent = t.earlyDownloadLinkText;
+      document.getElementById('bgModeTitle').textContent = t.bgModeTitle;
+    }
+
+    // Apply theme background based on selection
+    function applyBackgroundMode(mode) {
+      // Reset color vars for text and backgrounds
+      let bg = '';
+      let textColor = '#d0d4ff';
+      let headerBg = '#1c2031';
+      let headerShadow = '0 0 20px #5a70ff88';
+      let navActiveBg = '#5a70ff';
+
+      switch(mode) {
+        case 'black':
+          bg = '#000000';
+          textColor = '#e6e6e6';
+          headerBg = '#111111';
+          headerShadow = '0 0 20px #88888888';
+          navActiveBg = '#666666';
+          break;
+        case 'dark':
+          bg = '#121721';
+          textColor = '#d0d4ff';
+          headerBg = '#1c2031';
+          headerShadow = '0 0 20px #5a70ff88';
+          navActiveBg = '#5a70ff';
+          break;
+        case 'midnight':
+          bg = '#0a0a0a';
+          textColor = '#b0b0ff';
+          headerBg = '#0d0d0d';
+          headerShadow = '0 0 30px #2222ffbb';
+          navActiveBg = '#2222ff';
+          break;
+        case 'red':
+          bg = 'linear-gradient(135deg, #300000, #700000)';
+          textColor = '#ffbbbb';
+          headerBg = '#440000';
+          headerShadow = '0 0 20px #ff4444bb';
+          navActiveBg = '#ff4444';
+          break;
+        case 'lightpink':
+          bg = 'linear-gradient(135deg, #ffdeea, #ffc2d1)';
+          textColor = '#660033';
+          headerBg = '#ff99bb';
+          headerShadow = '0 0 20px #ff6699bb';
+          navActiveBg = '#ff6699';
+          break;
+        case 'default':
+        default:
+          bg = 'linear-gradient(135deg, #0f1117 0%, #181c27 100%)';
+          textColor = '#d0d4ff';
+          headerBg = '#1c2031';
+          headerShadow = '0 0 20px #5a70ff88';
+          navActiveBg = '#5a70ff';
+          break;
+      }
+
+      // Apply styles
+      document.body.style.background = bg;
+      document.body.style.color = textColor;
+      document.querySelector('header').style.background = headerBg;
+      document.querySelector('header').style.boxShadow = headerShadow;
+
+      // Update nav active link bg color
+      document.querySelectorAll('nav a').forEach(a => {
+        if(a.classList.contains('active')) {
+          a.style.background = navActiveBg;
+          a.style.boxShadow = `0 0 12px ${navActiveBg}`;
+          a.style.color = '#fff';
+        } else {
+          a.style.background = 'transparent';
+          a.style.boxShadow = 'none';
+          a.style.color = textColor;
+        }
+      });
+
+      // Update other UI parts color if needed
+      // e.g. inputs and buttons background can be adjusted here if desired
+    }
+
+    // Load saved settings from localStorage
+    function loadSettings() {
+      const lang = localStorage.getItem('language') || 'en';
+      applyLanguage(lang);
+
+      const darkMode = localStorage.getItem('darkMode') === 'true';
+      darkModeCheckbox.checked = darkMode;
+
+      const bgMode = localStorage.getItem('bgMode') || 'default';
+      bgModeSelect.value = bgMode;
+      applyBackgroundMode(bgMode);
+
+      const betaAccess = localStorage.getItem('betaAccessGranted') === 'true';
+      if(betaAccess) {
+        testerTab.classList.add('active');
+      }
+    }
+
+    // Save language to localStorage and sync selects
+    function saveLanguage(lang) {
+      localStorage.setItem('language', lang);
+      applyLanguage(lang);
+      syncLanguageSelects(lang);
+    }
+
+    // Save dark mode (for compatibility, but mostly handled by bgMode)
+    function saveDarkMode(enabled) {
+      localStorage.setItem('darkMode', enabled);
+    }
+
+    // Save background mode
+    function saveBgMode(mode) {
+      localStorage.setItem('bgMode', mode);
+      applyBackgroundMode(mode);
+    }
+
+    // Event listeners
+    languageSelectHeader.addEventListener('change', e => {
+      saveLanguage(e.target.value);
+      languageSelectMain.value = e.target.value;
+    });
+    languageSelectMain.addEventListener('change', e => {
+      saveLanguage(e.target.value);
+      languageSelectHeader.value = e.target.value;
     });
 
-    // Beta tester unlock function
-    betaButton.addEventListener('click', () => {
-      const input = document.getElementById('betaInput').value.trim();
-      if (input === password) {
-        tester.style.display = 'block';
-        tester.focus();
-        alert(texts[currentLang].accessGranted);
-      } else {
-        alert(texts[currentLang].accessDenied);
+    darkModeCheckbox.addEventListener('change', e => {
+      saveDarkMode(e.target.checked);
+      // For legacy: if dark mode checked, set background mode to dark, else default
+      if(e.target.checked) {
+        bgModeSelect.value = 'dark';
+        saveBgMode('dark');
+      } else if (bgModeSelect.value === 'dark') {
+        bgModeSelect.value = 'default';
+        saveBgMode('default');
       }
     });
+
+    bgModeSelect.addEventListener('change', e => {
+      saveBgMode(e.target.value);
+
+      // Sync darkModeCheckbox for compatibility:
+      darkModeCheckbox.checked = (e.target.value === 'dark');
+      saveDarkMode(darkModeCheckbox.checked);
+    });
+
+    betaSubmitBtn.addEventListener('click', () => {
+      const entered = betaPasswordInput.value.trim();
+      if(entered === betaPasswordSecret) {
+        alert('Access granted! Welcome, Beta Tester!');
+        testerTab.classList.add('active');
+        localStorage.setItem('betaAccessGranted', 'true');
+        betaPasswordInput.value = '';
+      } else {
+        alert('Incorrect password. Please try again.');
+        betaPasswordInput.value = '';
+      }
+    });
+
+    // Initialize UI
+    loadSettings();
+
   </script>
 
 </body>
