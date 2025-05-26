@@ -6,12 +6,8 @@
   <title>Settings - PC Sandbox</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
   <style>
-    /* Reset and Theme */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    /* --- identical styles from index.html --- */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #0f1117 0%, #181c27 100%);
@@ -20,22 +16,33 @@
       display: flex;
       flex-direction: column;
     }
+    a {
+      color: #8ba0ff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover, a:focus {
+      color: #5a70ff;
+      text-decoration: underline;
+      outline: none;
+    }
     header {
       background: #1c2031;
       box-shadow: 0 0 20px #5a70ff88;
       padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       position: sticky;
       top: 0;
       z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     .logo {
       font-weight: 700;
       font-size: 1.8rem;
       color: #7c8bff;
       text-shadow: 0 0 12px #7c8bff;
+      user-select: none;
     }
     nav a {
       font-weight: 600;
@@ -43,117 +50,86 @@
       margin-left: 1.5rem;
       padding: 0.3rem 0.6rem;
       border-radius: 6px;
-      color: #8ba0ff;
-      text-decoration: none;
-      transition: 0.3s ease;
     }
     nav a.active, nav a:focus {
       background: #5a70ff;
       box-shadow: 0 0 12px #5a70ff;
       color: #fff;
+      outline: none;
     }
-
-    main {
-      flex-grow: 1;
-      max-width: 800px;
-      margin: 4rem auto;
-      padding: 0 1.5rem;
-    }
-    main h1 {
-      font-size: 2.8rem;
-      font-weight: 700;
-      color: #7c8bff;
-      text-shadow: 0 0 12px #7c8bff;
-      margin-bottom: 2rem;
-      text-align: center;
-    }
-    .settings-group {
-      background: #1e2233;
-      border-radius: 14px;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 8px 25px #5a70ff33;
-    }
-    .settings-group h2 {
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: #abb2ff;
-      margin-bottom: 1.2rem;
-    }
-    .setting-item {
+    .lang-select-container {
+      margin-left: auto;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-bottom: 1.2rem;
-      flex-wrap: wrap;
-    }
-    .setting-item label {
-      color: #ccd2ff;
+      gap: 0.5rem;
+      color: #abb2ffcc;
       font-weight: 500;
-      font-size: 1.05rem;
-      margin-bottom: 0.4rem;
+      font-size: 0.95rem;
     }
-    .setting-item input[type="checkbox"] {
-      width: 20px;
-      height: 20px;
-      accent-color: #5a70ff;
-      transform: scale(1.3);
-      cursor: pointer;
-    }
-    .setting-item select {
+    select#languageSelect {
       background: #2a2f48;
       border: none;
       border-radius: 6px;
       color: #abb2ff;
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
+      padding: 0.3rem 0.7rem;
       font-weight: 600;
+      font-size: 1rem;
       cursor: pointer;
-      transition: background 0.3s ease;
     }
-    .setting-item select:hover {
+    select#languageSelect:hover, select#languageSelect:focus {
       background: #3e50ff;
-      color: #fff;
-    }
-
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    .buttons button {
-      background: #5a70ff;
       color: white;
-      padding: 0.9rem 2rem;
-      font-size: 1.1rem;
+      outline: none;
+    }
+    main {
+      flex-grow: 1;
+      max-width: 960px;
+      margin: 4rem auto 6rem;
+      padding: 0 1rem;
+    }
+    main h1 {
       font-weight: 700;
-      border: none;
+      font-size: 2.4rem;
+      margin-bottom: 2rem;
+      color: #7c8bff;
+      text-shadow: 0 0 12px #7c8bff;
+      text-align: center;
+    }
+    .setting-group {
+      background: #1c2031;
+      padding: 2rem;
       border-radius: 12px;
-      box-shadow: 0 6px 20px #5a70ff88;
-      cursor: pointer;
-      transition: all 0.3s ease;
+      box-shadow: 0 6px 20px #5a70ff33;
+      margin-bottom: 2rem;
     }
-    .buttons button:hover {
-      background: #3e50ff;
-      transform: scale(1.07);
-      box-shadow: 0 8px 30px #3e50ffbb;
+    .setting-group h2 {
+      font-size: 1.4rem;
+      color: #abb2ff;
+      margin-bottom: 1rem;
     }
-
+    .setting {
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .setting label {
+      font-weight: 500;
+      font-size: 1rem;
+    }
+    .setting input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: #5a70ff;
+    }
     footer {
       background: #1c2031;
       text-align: center;
       padding: 1rem 2rem;
+      font-weight: 300;
       font-size: 0.9rem;
       color: #99aaffcc;
       box-shadow: inset 0 1px 3px #00000080;
-    }
-
-    @media (max-width: 600px) {
-      .setting-item {
-        flex-direction: column;
-        align-items: flex-start;
-      }
     }
   </style>
 </head>
@@ -162,49 +138,40 @@
   <header>
     <div class="logo">PC Sandbox</div>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="settings.html" class="active">Settings</a>
+      <a href="index.html" id="homeTab">Home</a>
+      <a href="settings.html" class="active" aria-current="page" id="settingsTab">Settings</a>
     </nav>
+    <div class="lang-select-container">
+      <label for="languageSelect">Language:</label>
+      <select id="languageSelect">
+        <option value="en">English</option>
+        <option value="es">Español</option>
+        <option value="fr">Français</option>
+      </select>
+    </div>
   </header>
 
   <main>
     <h1>Settings</h1>
 
-    <div class="settings-group">
+    <div class="setting-group">
       <h2>General</h2>
-      <div class="setting-item">
+      <div class="setting">
         <label for="enableMusic">Enable Background Music</label>
-        <input type="checkbox" id="enableMusic" />
+        <input type="checkbox" id="enableMusic">
       </div>
-      <div class="setting-item">
-        <label for="language">Language</label>
-        <select id="language">
-          <option value="en">English</option>
-          <option value="es">Español</option>
-          <option value="fr">Français</option>
-        </select>
+      <div class="setting">
+        <label for="showTooltips">Show Tooltips</label>
+        <input type="checkbox" id="showTooltips" checked>
       </div>
     </div>
 
-    <div class="settings-group">
-      <h2>Graphics</h2>
-      <div class="setting-item">
-        <label for="resolution">Resolution</label>
-        <select id="resolution">
-          <option>1920x1080</option>
-          <option>1280x720</option>
-          <option>800x600</option>
-        </select>
+    <div class="setting-group">
+      <h2>Experimental</h2>
+      <div class="setting">
+        <label for="enableBetaFeatures">Enable Beta Features</label>
+        <input type="checkbox" id="enableBetaFeatures">
       </div>
-      <div class="setting-item">
-        <label for="fullscreen">Fullscreen Mode</label>
-        <input type="checkbox" id="fullscreen" />
-      </div>
-    </div>
-
-    <div class="buttons">
-      <button onclick="saveSettings()">Save Settings</button>
-      <button onclick="resetSettings()">Reset to Default</button>
     </div>
   </main>
 
@@ -213,15 +180,14 @@
   </footer>
 
   <script>
-    function saveSettings() {
-      alert("Settings saved!");
-    }
-    function resetSettings() {
-      document.getElementById("enableMusic").checked = false;
-      document.getElementById("fullscreen").checked = false;
-      document.getElementById("resolution").value = "1920x1080";
-      document.getElementById("language").value = "en";
-    }
+    const languageSelect = document.getElementById('languageSelect');
+    let currentLang = localStorage.getItem('pcSandboxLanguage') || 'en';
+    languageSelect.value = currentLang;
+
+    languageSelect.addEventListener('change', () => {
+      localStorage.setItem('pcSandboxLanguage', languageSelect.value);
+      location.reload();
+    });
   </script>
 
 </body>
