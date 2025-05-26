@@ -7,25 +7,39 @@
   <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0f0f12;
-      --text: #f0f0f0;
-      --accent: #7c3aed;
-      --card-bg: #1a1a1f;
+      --bg-dark: #0f0f12;
+      --text-dark: #f0f0f0;
+      --card-bg-dark: #1a1a1f;
+      --accent-dark: #7c3aed;
+
+      --bg-light: #f9fafb;
+      --text-light: #1a1a1a;
+      --card-bg-light: #ffffff;
+      --accent-light: #7c3aed;
     }
     body {
       font-family: 'Urbanist', sans-serif;
       margin: 0;
-      background: var(--bg);
-      color: var(--text);
+      background: var(--bg-dark);
+      color: var(--text-dark);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       transition: background 0.3s, color 0.3s;
     }
+    body.light {
+      background: var(--bg-light);
+      color: var(--text-light);
+    }
     header, footer {
-      background: var(--card-bg);
+      background: var(--card-bg-dark);
       padding: 1rem 2rem;
       text-align: center;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.light header, body.light footer {
+      background: var(--card-bg-light);
+      color: var(--text-light);
     }
     header {
       display: flex;
@@ -35,16 +49,24 @@
     .logo {
       font-size: 1.6rem;
       font-weight: 800;
-      color: var(--accent);
+      color: var(--accent-dark);
+      transition: color 0.3s;
+    }
+    body.light .logo {
+      color: var(--accent-light);
     }
     nav a {
       margin-left: 1rem;
-      color: var(--text);
+      color: inherit;
       text-decoration: none;
       font-weight: 600;
     }
     nav a:hover {
       text-decoration: underline;
+    }
+    nav a[aria-current="page"] {
+      text-decoration: underline;
+      font-weight: 700;
     }
     .section {
       padding: 2rem;
@@ -56,18 +78,33 @@
       margin-bottom: 0.5rem;
       font-weight: 600;
     }
-    input[type="password"] {
+    input[type="password"],
+    select {
       width: 100%;
       max-width: 320px;
       padding: 0.6rem;
       border-radius: 6px;
-      border: none;
+      border: 1px solid #555;
       font-size: 1rem;
       margin-bottom: 1rem;
       outline: none;
+      transition: border-color 0.3s;
+      background: transparent;
+      color: inherit;
+    }
+    body.light input[type="password"],
+    body.light select {
+      border-color: #ccc;
+      background: #fff;
+      color: var(--text-light);
+    }
+    input[type="checkbox"] {
+      margin-right: 0.6rem;
+      transform: scale(1.2);
+      cursor: pointer;
     }
     button {
-      background: var(--accent);
+      background: var(--accent-dark);
       color: white;
       font-weight: 600;
       border: none;
@@ -76,16 +113,25 @@
       cursor: pointer;
       transition: background 0.3s ease;
     }
+    body.light button {
+      background: var(--accent-light);
+    }
     button:hover {
       background: #5a21d4;
     }
     #tester {
       margin-top: 2rem;
-      border: 1px solid var(--accent);
+      border: 1px solid var(--accent-dark);
       border-radius: 12px;
       padding: 1.5rem;
       background: #18181f;
       display: none;
+      transition: background 0.3s;
+    }
+    body.light #tester {
+      background: #f0f0f3;
+      border-color: var(--accent-light);
+      color: var(--text-light);
     }
     .sneak-peeks {
       display: grid;
@@ -98,7 +144,7 @@
       border-radius: 12px;
     }
     .buttons a {
-      background: var(--accent);
+      background: var(--accent-dark);
       padding: 0.8rem 1.4rem;
       color: white;
       border-radius: 10px;
@@ -108,8 +154,15 @@
       display: inline-block;
       transition: background 0.3s ease;
     }
+    body.light .buttons a {
+      background: var(--accent-light);
+      color: var(--text-light);
+    }
     .buttons a:hover {
       background: #5a21d4;
+    }
+    .setting-group {
+      margin-bottom: 1.5rem;
     }
   </style>
 </head>
@@ -124,9 +177,46 @@
 
   <section class="section">
     <h1>Settings</h1>
-    <label for="betaInput">Enter Beta Access Password:</label>
-    <input type="password" id="betaInput" placeholder="Enter secure password" autocomplete="off" />
-    <button onclick="checkBetaAccess()">Unlock Beta Features</button>
+
+    <div class="setting-group">
+      <label>
+        <input type="checkbox" id="darkModeToggle" />
+        Enable Dark Mode
+      </label>
+    </div>
+
+    <div class="setting-group">
+      <label>
+        <input type="checkbox" id="notificationsToggle" />
+        Enable Notifications
+      </label>
+    </div>
+
+    <div class="setting-group">
+      <label for="fontSizeSelect">Font Size</label>
+      <select id="fontSizeSelect" aria-label="Select font size">
+        <option value="small">Small</option>
+        <option value="medium" selected>Medium (Default)</option>
+        <option value="large">Large</option>
+      </select>
+    </div>
+
+    <div class="setting-group">
+      <label for="languageSelect">Language</label>
+      <select id="languageSelect" aria-label="Select language">
+        <option value="en" selected>English</option>
+        <option value="es">Spanish (Español)</option>
+        <option value="fr">French (Français)</option>
+      </select>
+    </div>
+
+    <hr />
+
+    <div class="setting-group">
+      <label for="betaInput">Enter Beta Access Password:</label>
+      <input type="password" id="betaInput" placeholder="Enter secure password" autocomplete="off" />
+      <button onclick="checkBetaAccess()">Unlock Beta Features</button>
+    </div>
 
     <div id="tester" aria-live="polite" tabindex="-1">
       <h2>Beta Tester Zone</h2>
@@ -146,10 +236,89 @@
   </footer>
 
   <script>
+    // Apply saved theme & font size from localStorage on load
+    window.addEventListener('DOMContentLoaded', () => {
+      const darkModeEnabled = localStorage.getItem('darkMode') === 'true';
+      const notificationsEnabled = localStorage.getItem('notifications') === 'true';
+      const fontSize = localStorage.getItem('fontSize') || 'medium';
+      const language = localStorage.getItem('language') || 'en';
+
+      document.getElementById('darkModeToggle').checked = darkModeEnabled;
+      document.getElementById('notificationsToggle').checked = notificationsEnabled;
+      document.getElementById('fontSizeSelect').value = fontSize;
+      document.getElementById('languageSelect').value = language;
+
+      applyDarkMode(darkModeEnabled);
+      applyFontSize(fontSize);
+      applyLanguage(language);
+    });
+
+    // Dark Mode toggle logic
+    document.getElementById('darkModeToggle').addEventListener('change', (e) => {
+      const enabled = e.target.checked;
+      localStorage.setItem('darkMode', enabled);
+      applyDarkMode(enabled);
+    });
+
+    function applyDarkMode(enabled) {
+      if (enabled) {
+        document.body.classList.add('light');
+      } else {
+        document.body.classList.remove('light');
+      }
+    }
+
+    // Notifications toggle logic (simulate)
+    document.getElementById('notificationsToggle').addEventListener('change', (e) => {
+      const enabled = e.target.checked;
+      localStorage.setItem('notifications', enabled);
+      if (enabled) {
+        alert('Notifications enabled (simulated)');
+      } else {
+        alert('Notifications disabled (simulated)');
+      }
+    });
+
+    // Font size change logic
+    document.getElementById('fontSizeSelect').addEventListener('change', (e) => {
+      const size = e.target.value;
+      localStorage.setItem('fontSize', size);
+      applyFontSize(size);
+    });
+
+    function applyFontSize(size) {
+      if (size === 'small') {
+        document.body.style.fontSize = '14px';
+      } else if (size === 'large') {
+        document.body.style.fontSize = '20px';
+      } else {
+        document.body.style.fontSize = '16px';
+      }
+    }
+
+    // Language select (demo only)
+    document.getElementById('languageSelect').addEventListener('change', (e) => {
+      const lang = e.target.value;
+      localStorage.setItem('language', lang);
+      applyLanguage(lang);
+    });
+
+    function applyLanguage(lang) {
+      // This is a demo stub. You can expand with real localization.
+      const messages = {
+        en: 'Thank you for supporting PC Sandbox early! Here\'s your exclusive content:',
+        es: '¡Gracias por apoyar PC Sandbox temprano! Aquí está su contenido exclusivo:',
+        fr: 'Merci de soutenir PC Sandbox en avant-première ! Voici votre contenu exclusif :'
+      };
+      const testerMsg = document.querySelector('#tester p');
+      if (testerMsg) testerMsg.textContent = messages[lang] || messages.en;
+    }
+
+    // Beta tester unlock
     function checkBetaAccess() {
       const password = document.getElementById('betaInput').value.trim();
       const testerSection = document.getElementById('tester');
-      if (password === 'UltraSecureBetaAccess123!') {
+      if (password === 'R9v$3X!qLp&7Zb@Ws8#FnG2YmCt^4KdJJk!45GgkGkDFPOGDhMSn1%93$xF') {
         testerSection.style.display = 'block';
         testerSection.focus();
         alert('Access granted. Welcome, Beta Tester!');
