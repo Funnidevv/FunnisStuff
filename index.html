@@ -4,160 +4,126 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PC Sandbox</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #ffffff;
-      --text: #1a1a1a;
-      --accent: #5865f2;
-      --card-bg: #f4f4f4;
-    }
-    [data-theme="dark"] {
-      --bg: #121212;
-      --text: #e0e0e0;
-      --accent: #5865f2;
-      --card-bg: #1e1e1e;
-    }
-
-    * {
-      box-sizing: border-box;
-      transition: background 0.3s, color 0.3s;
+      --bg: #0f0f12;
+      --text: #f0f0f0;
+      --accent: #7c3aed;
+      --card-bg: #1a1a1f;
     }
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Urbanist', sans-serif;
       margin: 0;
       background: var(--bg);
       color: var(--text);
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
+    }
+    header, footer {
+      background: var(--card-bg);
+      padding: 1rem 2rem;
+      text-align: center;
     }
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 2rem;
-      background: var(--card-bg);
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
     }
     .logo {
-      font-weight: 600;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
+      font-weight: 800;
       color: var(--accent);
     }
-    .toggle {
-      cursor: pointer;
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 6px;
-      background: var(--accent);
-      color: white;
-      font-weight: 600;
-    }
-
-    main {
-      flex: 1;
-      padding: 2rem;
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: var(--accent);
-    }
-    .lead {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
+    nav a {
+      margin-left: 1rem;
       color: var(--text);
-    }
-    .buttons {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 3rem;
-    }
-    .buttons a {
-      padding: 0.8rem 1.5rem;
-      border-radius: 8px;
-      background: var(--accent);
-      color: white;
       text-decoration: none;
       font-weight: 600;
-      transition: transform 0.2s;
     }
-    .buttons a:hover {
-      transform: scale(1.05);
+    .section {
+      padding: 2rem;
+      max-width: 960px;
+      margin: auto;
     }
-
+    .buttons a {
+      background: var(--accent);
+      padding: 0.8rem 1.4rem;
+      color: white;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0.5rem;
+      display: inline-block;
+    }
     .sneak-peeks {
       display: grid;
-      gap: 1.5rem;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
     }
     .sneak-peeks img {
       width: 100%;
       border-radius: 12px;
-      background: var(--card-bg);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
     }
-    .sneak-peeks img:hover {
-      transform: scale(1.03);
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: var(--card-bg);
-      font-size: 0.9rem;
-      color: var(--text);
-    }
+    .hidden { display: none; }
   </style>
 </head>
-<body data-theme="light">
+<body>
   <header>
     <div class="logo">PC Sandbox</div>
-    <button class="toggle" onclick="toggleTheme()">Toggle Dark Mode</button>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#settings">Settings</a>
+      <a href="#tester" id="testerTab" class="hidden">Tester</a>
+    </nav>
   </header>
 
-  <main>
-    <h1>PC Sandbox</h1>
+  <section class="section">
+    <h1>Welcome to PC Sandbox</h1>
     <p class="lead">Explore, build, and experiment in the ultimate sandbox experience.</p>
     <div class="buttons">
-      <a href="https://discord.gg/W2d7Gb8sgr" target="_blank">Discord</a>
+      <a href="https://discord.gg/W2d7Gb8sgr" target="_blank">Join Discord</a>
       <a href="#">Download (Coming Soon)</a>
     </div>
+  </section>
 
-    <section class="sneak-peeks">
-      <img src="https://cdn.discordapp.com/attachments/1362201864283623506/1376417954329268285/image.png" alt="Screenshot 1">
-      <img src="https://cdn.discordapp.com/attachments/1362201864283623506/1376418418244321368/image.png" alt="Screenshot 2">
-    </section>
-  </main>
+  <section id="settings" class="section">
+    <h2>Settings</h2>
+    <label for="betaInput">Enter Beta Access Password:</label><br>
+    <input type="password" id="betaInput" placeholder="Enter secure password" />
+    <button onclick="checkBetaAccess()">Unlock Beta Features</button>
+  </section>
+
+  <section id="tester" class="section hidden">
+    <h2>Beta Tester Zone</h2>
+    <p>Thank you for signing up for Beta Tester! Here is PC Sandbox early, And some sneak peaks content:</p>
+    <div class="sneak-peeks">
+      <img src="https://cdn.discordapp.com/attachments/1362201864283623506/1376417954329268285/image.png" alt="Screenshot 1" />
+      <img src="https://cdn.discordapp.com/attachments/1362201864283623506/1376418418244321368/image.png" alt="Screenshot 2" />
+    </div>
+    <div class="buttons">
+      <a href="#">Download Early Access</a>
+    </div>
+  </section>
 
   <footer>
     &copy; 2025 PC Sandbox. All rights reserved.
   </footer>
 
-  <audio id="hoverSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_e0981791c3.mp3" preload="auto"></audio>
-  <audio id="clickSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_d1e56d92e7.mp3" preload="auto"></audio>
-
   <script>
-    function toggleTheme() {
-      const body = document.body;
-      const theme = body.getAttribute('data-theme');
-      body.setAttribute('data-theme', theme === 'light' ? 'dark' : 'light');
+    function checkBetaAccess() {
+      const password = document.getElementById("betaInput").value;
+      if (password === "R9v$3X!qLp&7Zb@Ws8#FnG2YmCt^4KdJ") {
+        document.getElementById("tester").classList.remove("hidden");
+        document.getElementById("testerTab").classList.remove("hidden");
+        alert("Access granted. Welcome, Beta Tester!");
+      } else {
+        alert("Incorrect password. Access denied.");
+      }
     }
-
-    document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', () => document.getElementById('hoverSound').play());
-      el.addEventListener('click', () => document.getElementById('clickSound').play());
-    });
   </script>
 </body>
 </html>
