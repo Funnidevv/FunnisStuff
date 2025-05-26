@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Site Maintenance</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
+  <title>Site Maintenance - Ultra Edition 🚀</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap" rel="stylesheet" />
   <style>
     /* Reset */
     * {
@@ -12,130 +12,303 @@
       margin: 0;
       padding: 0;
     }
-    body {
+    html, body {
+      height: 100%;
+      overflow: hidden;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #0f1117 0%, #181c27 100%);
-      color: #d0d4ff;
-      min-height: 100vh;
+      background: #0a0c1a;
+      color: #e0e6ff;
       display: flex;
       justify-content: center;
       align-items: center;
-      text-align: center;
+      user-select: none;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      padding: 1rem;
+      perspective: 900px;
+    }
+
+    /* Particle starfield background */
+    #stars {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    main {
+      position: relative;
+      background: rgba(10, 12, 26, 0.6);
+      border-radius: 32px;
+      box-shadow:
+        0 0 24px #3a57ffcc,
+        0 0 70px #5587ffbb,
+        inset 0 0 40px #1e2d83cc;
+      border: 2px solid rgba(85, 135, 255, 0.5);
+      width: 480px;
+      padding: 4rem 3.5rem 4rem 3.5rem;
+      text-align: center;
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      transform-style: preserve-3d;
+      transition: transform 0.3s ease;
+      cursor: default;
       user-select: none;
-      animation: fadeIn 1s ease forwards;
+      z-index: 10;
+      animation: fadeSlideUp 1.4s ease forwards;
       opacity: 0;
     }
-    main {
-      max-width: 520px;
-      padding: 3rem 4rem;
-      background: linear-gradient(145deg, #1e2240, #15182f);
-      border-radius: 24px;
+    main:focus-within {
+      outline: none;
       box-shadow:
-        0 0 40px #5a70ffcc,
-        inset 0 0 20px #3a47a5cc;
-      border: 1px solid #3a47a5;
-      user-select: none;
+        0 0 28px #4f6cffdd,
+        0 0 80px #5a7affee,
+        inset 0 0 44px #2942d0cc;
+      border-color: #5a7affcc;
     }
+
+    main:hover {
+      transform: rotateX(6deg) rotateY(-7deg) scale(1.05);
+      box-shadow:
+        0 0 48px #7a9bffee,
+        0 0 120px #7ea6ffff,
+        inset 0 0 60px #3f55dbdd;
+      border-color: #7ea6ffff;
+    }
+
     h1 {
       font-weight: 700;
-      font-size: 4rem;
-      margin-bottom: 0.8rem;
-      color: #7c8bff;
-      text-shadow:
-        0 0 12px #7c8bff,
-        0 0 20px #5a70ffcc;
-      position: relative;
-      animation: glowPulse 2.5s ease-in-out infinite;
+      font-size: 4.2rem;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
       user-select: none;
+      position: relative;
+      color: #b4c7ff;
+      text-shadow:
+        0 0 6px #5a70ffdd,
+        0 0 20px #4f7dffcc,
+        0 0 30px #4f7dffcc;
+      background: linear-gradient(270deg,
+        #5361ff,
+        #d4d6ff,
+        #5361ff,
+        #a3baff,
+        #5568ff);
+      background-size: 1200% 1200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rainbowGlow 12s ease infinite;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 0.6rem;
-    }
-    /* Underline accent */
-    h1::after {
-      content: "";
-      display: block;
-      width: 80px;
-      height: 4px;
-      margin: 1rem auto 0;
-      background: linear-gradient(90deg, #5a70ff, #7c8bff);
-      border-radius: 2px;
-      box-shadow: 0 0 10px #7c8bffaa;
+      gap: 1.2rem;
     }
     h1 .emoji {
-      font-size: 1.8rem;
+      font-size: 3.3rem;
+      filter:
+        drop-shadow(0 0 15px #5a70ffcc);
+      animation: bounceEmoji 3s ease-in-out infinite;
+      transition: filter 0.3s ease, transform 0.3s ease;
       user-select: none;
+      will-change: transform;
+      cursor: default;
     }
+    h1 .emoji:hover {
+      filter: drop-shadow(0 0 25px #7a9cffdd);
+      transform: scale(1.5) rotate(12deg);
+    }
+
     p {
       font-weight: 300;
-      font-size: 1.6rem;
-      color: #abb2ffcc;
-      line-height: 1.7;
-      margin-top: 2.5rem;
+      font-size: 1.75rem;
+      color: #aabbffcc;
+      line-height: 1.85;
+      margin-top: 3.5rem;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 0.8rem;
+      gap: 1.1rem;
       user-select: none;
+      cursor: default;
+      text-shadow: 0 0 4px #384976cc;
+      z-index: 20;
     }
     p .emoji {
-      font-size: 1.5rem;
+      font-size: 2.2rem;
+      filter: drop-shadow(0 0 7px #abb8ffbb);
+      animation: bounceEmoji 4.5s ease-in-out infinite;
+      position: relative;
+      top: 3px;
+      transition: filter 0.3s ease, transform 0.3s ease;
       user-select: none;
     }
-    /* Pulsating dot replaced with hourglass emoji */
-    p::before {
-      content: "";
-      display: none; /* hidden because replaced by emoji */
+    p .emoji:hover {
+      filter: drop-shadow(0 0 16px #abb8ffdd);
+      transform: scale(1.35) rotate(-10deg);
+    }
+
+    /* Retry button */
+    button.retry {
+      margin-top: 3rem;
+      padding: 1rem 2.8rem;
+      font-size: 1.4rem;
+      font-weight: 600;
+      border-radius: 24px;
+      background: linear-gradient(45deg, #4f7dff, #90aaff);
+      border: none;
+      color: white;
+      box-shadow:
+        0 0 10px #5a7fffcc,
+        0 0 25px #7aa2ffbb;
+      cursor: pointer;
+      user-select: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      transition:
+        box-shadow 0.3s ease,
+        transform 0.3s ease,
+        background 0.5s ease;
+      filter: drop-shadow(0 0 10px #5a7fffcc);
+      outline-offset: 4px;
+      position: relative;
+      z-index: 10;
+      text-shadow: 0 0 5px #2f56ffbb;
+    }
+    button.retry:hover, button.retry:focus {
+      background: linear-gradient(45deg, #90aaff, #4f7dff);
+      box-shadow:
+        0 0 25px #5a8fffcc,
+        0 0 60px #7db1ffdd;
+      transform: scale(1.15);
+      outline: none;
+    }
+    button.retry:active {
+      transform: scale(1.05);
+      box-shadow:
+        0 0 12px #4f6effcc,
+        0 0 30px #699fffbb;
+    }
+    button.retry svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      fill: white;
+      filter: drop-shadow(0 0 4px #6b8dffcc);
+      transition: transform 0.3s ease;
+    }
+    button.retry:hover svg {
+      transform: rotate(20deg);
+    }
+    button.retry:focus-visible {
+      outline: 3px solid #7db1ffcc;
+      outline-offset: 3px;
     }
 
     /* Animations */
-    @keyframes glowPulse {
+    @keyframes bounceEmoji {
       0%, 100% {
-        text-shadow:
-          0 0 12px #7c8bff,
-          0 0 20px #5a70ffcc;
+        transform: translateY(0);
+        filter: drop-shadow(0 0 15px #5a70ffcc);
       }
       50% {
-        text-shadow:
-          0 0 20px #7c8bff,
-          0 0 30px #5a70ffdd,
-          0 0 40px #5a70ffee;
+        transform: translateY(-7px);
+        filter: drop-shadow(0 0 28px #7a9cffdd);
       }
     }
-    @keyframes fadeIn {
-      to {
+    @keyframes rainbowGlow {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+    @keyframes fadeSlideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
         opacity: 1;
+        transform: translateY(0);
       }
     }
 
-    @media (max-width: 520px) {
-      main {
-        padding: 2rem 2.5rem;
-      }
-      h1 {
-        font-size: 3rem;
-      }
-      h1 .emoji {
-        font-size: 1.5rem;
-      }
-      p {
-        font-size: 1.3rem;
-        margin-top: 2rem;
-      }
-      p .emoji {
-        font-size: 1.2rem;
-      }
-    }
   </style>
 </head>
 <body>
-  <main role="main" aria-live="polite">
-    <h1><span class="emoji" aria-hidden="true">🛠️</span> Site is down for Maintenance</h1>
-    <p><span class="emoji" aria-hidden="true">⏳</span> Please Check Back Later.</p>
+  <canvas id="stars"></canvas>
+  <main role="main" aria-live="polite" tabindex="0" aria-label="Site maintenance message">
+    <h1>
+      <span class="emoji" aria-hidden="true" title="Wrench and hammer emoji">🛠️</span>
+      Site is down for Maintenance
+    </h1>
+    <p>
+      <span class="emoji" aria-hidden="true" title="Hourglass emoji">⏳</span>
+      Please Check Back Later.
+    </p>
+    <button class="retry" aria-label="Retry loading the site" title="Retry now">
+      🔄 Retry
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4V1L8 5l4 4V6a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z"/></svg>
+    </button>
   </main>
+
+  <script>
+    // Particle starfield animation for subtle sparkles
+    const canvas = document.getElementById('stars');
+    const ctx = canvas.getContext('2d');
+    let w, h, stars = [];
+
+    function init() {
+      w = window.innerWidth;
+      h = window.innerHeight;
+      canvas.width = w;
+      canvas.height = h;
+      stars = [];
+      for(let i = 0; i < 180; i++) {
+        stars.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          radius: Math.random() * 1.2 + 0.2,
+          alpha: Math.random(),
+          dAlpha: Math.random() * 0.02 + 0.005,
+        });
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      for(let star of stars) {
+        star.alpha += star.dAlpha;
+        if(star.alpha <= 0) {
+          star.alpha = 0;
+          star.dAlpha = -star.dAlpha;
+        }
+        else if(star.alpha >= 1) {
+          star.alpha = 1;
+          star.dAlpha = -star.dAlpha;
+        }
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, 2 * Math.PI);
+        ctx.fillStyle = `rgba(140, 160, 255, ${star.alpha * 0.6})`;
+        ctx.shadowColor = `rgba(140, 160, 255, ${star.alpha})`;
+        ctx.shadowBlur = star.radius * 4;
+        ctx.fill();
+      }
+      requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', init);
+
+    init();
+    draw();
+
+    // Retry button functionality (refreshes page)
+    document.querySelector('button.retry').addEventListener('click', () => {
+      location.reload();
+    });
+  </script>
 </body>
 </html>
