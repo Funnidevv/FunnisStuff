@@ -250,144 +250,311 @@
       color: white;
       font-weight: 700;
       font-size: 1.15rem;
-      box-shadow: 0 6px 25px #5a70ffbb;
-      text-decoration: none;
+      box-shadow: 0 6px 20px #5a70ff88;
       user-select: none;
-      transition: background 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
     }
-    #betaTesterSettings a#betaDownloadBtn:hover,
-    #betaTesterSettings a#betaDownloadBtn:focus {
+    #betaTesterSettings a#betaDownloadBtn:hover {
       background: #3e50ff;
-      box-shadow: 0 8px 35px #3e50ffbb;
-      outline: none;
+      box-shadow: 0 8px 30px #3e50ffbb;
+      transform: scale(1.05);
+      text-decoration: none;
     }
 
-    /* Responsive */
-    @media (max-width: 640px) {
-      main h1 {
-        font-size: 2.2rem;
-      }
-      button {
-        width: 100%;
-      }
-      nav a {
-        margin-left: 1rem;
-        font-size: 0.9rem;
-      }
-      #betaTesterSettings a#betaDownloadBtn {
-        width: 100%;
-        text-align: center;
-      }
+    /* Background modes CSS */
+
+    body.mode_none {
+      background: #0f1117;
+      color: #d0d4ff;
+      transition: background 0.5s ease;
     }
+    body.mode_neon {
+      background: radial-gradient(circle at center, #080c18, #00104d 80%);
+      color: #7c8bff;
+      text-shadow:
+        0 0 5px #8a93ff,
+        0 0 10px #8a93ff,
+        0 0 20px #5a70ff,
+        0 0 30px #3e50ff;
+      transition: background 0.5s ease, color 0.5s ease;
+    }
+    body.mode_dark {
+      background: linear-gradient(135deg, #14191f 0%, #22292f 100%);
+      color: #a3b1ffcc;
+      transition: background 0.5s ease, color 0.5s ease;
+    }
+    body.mode_starfield {
+      background: black;
+      overflow: hidden;
+      color: #b0b7ff;
+      transition: background 0.5s ease, color 0.5s ease;
+    }
+    /* Starfield canvas covers entire screen */
+    #starfield-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+    }
+    body.mode_lines {
+      background: linear-gradient(45deg, #1c2031 25%, transparent 25%), 
+                  linear-gradient(-45deg, #1c2031 25%, transparent 25%), 
+                  linear-gradient(45deg, transparent 75%, #1c2031 75%), 
+                  linear-gradient(-45deg, transparent 75%, #1c2031 75%);
+      background-size: 40px 40px;
+      background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+      color: #a2aaffcc;
+      transition: background 0.5s ease, color 0.5s ease;
+    }
+    body.mode_grid {
+      background:
+        linear-gradient(to right, #1c2031 1px, transparent 1px),
+        linear-gradient(to bottom, #1c2031 1px, transparent 1px);
+      background-size: 40px 40px;
+      color: #a0a7ffcc;
+      transition: background 0.5s ease, color 0.5s ease;
+    }
+    body.mode_blue {
+      background: linear-gradient(135deg, #001830 0%, #00336b 100%);
+      color: #a9c4ff;
+      transition: background 0.5s ease, color 0.5s ease;
+    }
+    body.mode_magenta {
+      background: linear-gradient(135deg, #330030 0%, #770059 100%);
+      color: #ff9ddb;
+      transition: background 0.5s ease, color 0.5s ease;
+    }
+    body.mode_magenta_blue {
+      background: linear-gradient(135deg, #330030 0%, #770059 50%, #003366 100%);
+      color: #d28fff;
+      transition: background 0.5s ease, color 0.5s ease;
+    }
+
   </style>
 </head>
 <body>
-
   <header>
-    <div class="logo">PC Sandbox</div>
-    <nav>
-      <a href="index.html" id="homeTab">Home</a>
-      <a href="settings.html" class="active" aria-current="page" id="settingsTab">Settings</a>
+    <a href="index.html" class="logo" tabindex="1" aria-label="Go to Home page">PC Sandbox</a>
+    <nav aria-label="Main navigation">
+      <a href="settings.html" class="active" tabindex="2" aria-current="page">Settings</a>
+      <a href="about.html" tabindex="3">About</a>
+      <a href="help.html" tabindex="4">Help</a>
+      <a href="mods.html" tabindex="5">Mods</a>
+      <div class="lang-select-container" aria-label="Select language">
+        <label for="languageSelect" class="visually-hidden">Language</label>
+        <select id="languageSelect" aria-live="polite" aria-atomic="true" aria-relevant="all" tabindex="6">
+          <option value="en" selected>English</option>
+          <option value="ru">Русский</option>
+          <option value="es">Español</option>
+          <option value="zh">中文</option>
+          <option value="fr">Français</option>
+          <option value="ja">日本語</option>
+          <option value="de">Deutsch</option>
+          <option value="it">Italiano</option>
+          <option value="pt">Português</option>
+          <option value="ko">한국어</option>
+          <option value="pl">Polski</option>
+          <option value="tr">Türkçe</option>
+        </select>
+      </div>
     </nav>
-    <div class="lang-select-container">
-      <label for="languageSelect" id="languageLabel">Language:</label>
-      <select id="languageSelect" aria-labelledby="languageLabel">
-        <option value="en" selected>English</option>
-        <option value="ru">Русский</option>
-      </select>
-    </div>
   </header>
 
-  <main role="main" aria-label="Settings page main content">
+  <main role="main">
     <h1>Settings</h1>
 
-    <section class="section beta-tester" aria-labelledby="betaTesterHeading">
-      <h2 id="betaTesterHeading">Beta Tester Sign-Up</h2>
-      <form id="betaForm" aria-describedby="betaFormDesc" novalidate>
-        <label for="betaKeyInput">Beta Access Key</label>
-        <input
-          type="text"
-          id="betaKeyInput"
-          name="betaKeyInput"
-          placeholder="Enter your beta key here"
-          aria-required="true"
-          autocomplete="off"
-          spellcheck="false"
-        />
-        <button type="submit" id="betaSubmitBtn" aria-live="polite" aria-describedby="betaMsg" aria-disabled="false">Submit</button>
-      </form>
-      <div id="betaMsg" role="alert" aria-live="assertive" style="margin-top: 1rem; font-weight: 700;"></div>
+    <section class="section" aria-labelledby="backgroundLabel">
+      <h2 id="backgroundLabel">Background Color Mode</h2>
+      <label for="bgModeSelect">Select background mode:</label>
+      <select id="bgModeSelect" aria-describedby="bgHelp">
+        <option value="none">None</option>
+        <option value="neon">Neon</option>
+        <option value="dark">Dark</option>
+        <option value="starfield">Starfield</option>
+        <option value="lines">Lines</option>
+        <option value="grid">Grid</option>
+        <option value="blue">Blue</option>
+        <option value="magenta">Magenta</option>
+        <option value="magenta_blue">Magenta-Blue</option>
+      </select>
+      <div id="bgHelp" style="font-size: 0.9rem; margin-top: 6px; color: #abb2ffcc;">
+        Choose the style of the background you want for the site.
+      </div>
+    </section>
 
-      <!-- New Beta Tester Settings GUI -->
-      <div id="betaTesterSettings" aria-live="polite" aria-atomic="true" tabindex="0">
-        <h3>Beta Tester Settings</h3>
-        <p>Thank you for validating your key! Here's a sneak peek at what you can access:</p>
+    <section class="section" aria-labelledby="languageLabel">
+      <h2 id="languageLabel">Language</h2>
+      <p>Use the dropdown in the header to select your preferred language.</p>
+    </section>
+
+    <section class="section beta-tester" aria-labelledby="betaTesterLabel">
+      <h2 id="betaTesterLabel">Beta Tester Settings</h2>
+      <label>
+        <input type="checkbox" id="enableBetaTester" aria-checked="false" />
+        Enable Beta Tester Settings
+      </label>
+
+      <div id="betaTesterSettings" role="region" aria-live="polite" aria-atomic="true">
+        <h3>Beta Tester Build</h3>
+        <p>
+          This build includes many improvements and fixes:
+        </p>
         <ul>
-          <li>Early access to new features and gameplay modes.</li>
-          <li>Exclusive cosmetic items and customization options.</li>
-          <li>Priority feedback channel with the developers.</li>
+          <li>Custom level teleport system</li>
+          <li>Smooth motion enhancements</li>
+          <li>Optimized VR locomotion</li>
+          <li>Additional color modes and themes</li>
+          <li>And much more...</li>
         </ul>
-        <a href="https://example.com/early-beta-download" target="_blank" rel="noopener" id="betaDownloadBtn">Early Beta Download</a>
+        <a href="pc_sandbox_beta.zip" id="betaDownloadBtn" role="button" tabindex="0" aria-label="Download Beta Tester Build">Download Beta Tester Build</a>
       </div>
     </section>
   </main>
 
+  <canvas id="starfield-canvas" aria-hidden="true"></canvas>
+
   <script>
-    (() => {
-      const betaForm = document.getElementById('betaForm');
-      const betaKeyInput = document.getElementById('betaKeyInput');
-      const betaSubmitBtn = document.getElementById('betaSubmitBtn');
-      const betaMsg = document.getElementById('betaMsg');
-      const betaTesterSettings = document.getElementById('betaTesterSettings');
+    // Manage Language Select persistence
+    const languageSelect = document.getElementById('languageSelect');
+    // Load language from localStorage if available
+    const savedLang = localStorage.getItem('pcSandboxLanguage');
+    if (savedLang) {
+      languageSelect.value = savedLang;
+    }
+    languageSelect.addEventListener('change', () => {
+      localStorage.setItem('pcSandboxLanguage', languageSelect.value);
+      // Here you would add code to change language dynamically or reload page
+    });
 
-      // Example valid keys (should be replaced with actual secure validation in production)
-      const validKeys = ['TESTKEY123', 'ALPHA999', 'BETA2025'];
+    // Beta Tester Settings toggle
+    const enableBetaCheckbox = document.getElementById('enableBetaTester');
+    const betaSettingsDiv = document.getElementById('betaTesterSettings');
 
-      betaForm.addEventListener('submit', (event) => {
-        event.preventDefault();
+    // Load Beta Tester enabled state from localStorage
+    const betaEnabledSaved = localStorage.getItem('pcSandboxBetaEnabled') === 'true';
+    enableBetaCheckbox.checked = betaEnabledSaved;
+    betaSettingsDiv.style.display = betaEnabledSaved ? 'block' : 'none';
+    enableBetaCheckbox.setAttribute('aria-checked', betaEnabledSaved);
 
-        const enteredKey = betaKeyInput.value.trim();
+    enableBetaCheckbox.addEventListener('change', () => {
+      const enabled = enableBetaCheckbox.checked;
+      localStorage.setItem('pcSandboxBetaEnabled', enabled);
+      betaSettingsDiv.style.display = enabled ? 'block' : 'none';
+      enableBetaCheckbox.setAttribute('aria-checked', enabled);
+    });
 
-        // Clear previous messages and hide beta tester settings
-        betaMsg.textContent = '';
-        betaTesterSettings.style.display = 'none';
+    // Background Color Mode Select
+    const bgModeSelect = document.getElementById('bgModeSelect');
+    const starfieldCanvas = document.getElementById('starfield-canvas');
+    const ctx = starfieldCanvas.getContext('2d');
 
-        if (enteredKey.length === 0) {
-          betaMsg.style.color = '#ff6666';
-          betaMsg.textContent = 'Please enter your beta access key.';
-          betaKeyInput.focus();
-          return;
+    // Starfield effect variables
+    let stars = [];
+    const numStars = 150;
+    let animationFrameId;
+
+    function resizeCanvas() {
+      starfieldCanvas.width = window.innerWidth;
+      starfieldCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+
+    // Initialize starfield stars
+    function initStars() {
+      stars = [];
+      for (let i = 0; i < numStars; i++) {
+        stars.push({
+          x: Math.random() * starfieldCanvas.width,
+          y: Math.random() * starfieldCanvas.height,
+          z: Math.random() * starfieldCanvas.width,
+        });
+      }
+    }
+
+    function animateStarfield() {
+      const width = starfieldCanvas.width;
+      const height = starfieldCanvas.height;
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = 'white';
+
+      for (let i = 0; i < stars.length; i++) {
+        let star = stars[i];
+
+        star.z -= 2;
+        if (star.z <= 0) {
+          star.x = Math.random() * width;
+          star.y = Math.random() * height;
+          star.z = width;
         }
 
-        if (validKeys.includes(enteredKey.toUpperCase())) {
-          betaMsg.style.color = '#8bff8b';
-          betaMsg.textContent = 'Key Valid, Giving Access To Beta Tester Stuff';
+        const sx = (star.x - width / 2) * (width / star.z) + width / 2;
+        const sy = (star.y - height / 2) * (width / star.z) + height / 2;
 
-          // Disable input and submit to prevent re-submitting
-          betaKeyInput.disabled = true;
-          betaSubmitBtn.disabled = true;
-          betaSubmitBtn.setAttribute('aria-disabled', 'true');
+        if (sx < 0 || sx >= width || sy < 0 || sy >= height) continue;
 
-          // Show Beta Tester Settings GUI
-          betaTesterSettings.style.display = 'block';
+        const size = (1 - star.z / width) * 2;
+        ctx.beginPath();
+        ctx.arc(sx, sy, size, 0, 2 * Math.PI);
+        ctx.fill();
+      }
+      animationFrameId = requestAnimationFrame(animateStarfield);
+    }
 
-          // Move focus to Beta Tester Settings for accessibility
-          betaTesterSettings.focus();
-        } else {
-          betaMsg.style.color = '#ff6666';
-          betaMsg.textContent = 'Invalid key. Please try again.';
-          betaKeyInput.focus();
-        }
-      });
+    // Start starfield animation
+    function startStarfield() {
+      resizeCanvas();
+      initStars();
+      animateStarfield();
+      starfieldCanvas.style.display = 'block';
+    }
 
-      // Accessibility: handle Enter key on input to submit
-      betaKeyInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          betaSubmitBtn.click();
-        }
-      });
-    })();
+    // Stop starfield animation
+    function stopStarfield() {
+      cancelAnimationFrame(animationFrameId);
+      starfieldCanvas.style.display = 'none';
+      ctx.clearRect(0, 0, starfieldCanvas.width, starfieldCanvas.height);
+    }
+
+    function applyBackgroundMode(mode) {
+      // Remove all mode- classes from body
+      document.body.className = '';
+      if (mode && mode !== 'none') {
+        document.body.classList.add('mode_' + mode);
+      }
+
+      // Starfield needs canvas animation
+      if (mode === 'starfield') {
+        startStarfield();
+      } else {
+        stopStarfield();
+      }
+    }
+
+    // Load saved background mode from localStorage or default
+    let savedBgMode = localStorage.getItem('pcSandboxBackgroundMode') || 'none';
+    bgModeSelect.value = savedBgMode;
+    applyBackgroundMode(savedBgMode);
+
+    bgModeSelect.addEventListener('change', () => {
+      const mode = bgModeSelect.value;
+      localStorage.setItem('pcSandboxBackgroundMode', mode);
+      applyBackgroundMode(mode);
+    });
+
+    // Accessibility: add a visually-hidden class for labels if needed
+    const style = document.createElement('style');
+    style.textContent = `.visually-hidden { 
+      position: absolute !important; 
+      height: 1px; width: 1px; 
+      overflow: hidden; 
+      clip: rect(1px,1px,1px,1px); 
+      white-space: nowrap; 
+    }`;
+    document.head.appendChild(style);
   </script>
 </body>
 </html>
